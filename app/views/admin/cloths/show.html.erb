@@ -1,8 +1,8 @@
 <%= link_to admin_cloths_path, class: "btn btn-link" do %>
-  &#8592; 返回列表
+  &#8592; 戻る
 <% end %>
-<%= link_to "編輯", edit_admin_cloth_path(@cloth), class: "btn btn-success float-right" %>
-<%= link_to '刪除', [:admin, @cloth], method: :delete, data: { confirm: '確認刪除？' }, class: "btn btn-danger float-right mr-2" %>
+<%= link_to "編集する", edit_admin_cloth_path(@cloth), class: "btn btn-success float-right" %>
+<%= link_to '削除', [:admin, @cloth], method: :delete, data: { confirm: '確認刪除？' }, class: "btn btn-danger float-right mr-2" %>
 
 <h1 class="h2"><%= Cloth.model_name.human %> #<%= @cloth.id %></h1>
 

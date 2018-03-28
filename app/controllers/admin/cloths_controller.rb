@@ -37,6 +37,8 @@ class Admin::ClothsController < AdminController
   # PATCH/PUT /cloths/1
   def update
     if @cloth.update(cloth_params)
+      # byebug #cloth_params[:remove_images]
+      @cloth.images.where(id: params[:cloth][:remove_images].keys).destroy_all
       flash[:success] = "更新成功。"
       redirect_to [:admin, @cloth]
     else
@@ -61,6 +63,6 @@ class Admin::ClothsController < AdminController
 
     # Only allow a trusted parameter "white list" through.
     def cloth_params
-      params.require(:cloth).permit(:code, :jancode, :brand, :price, :supplier_id, images: [])
+      params.require(:cloth).permit(:code, :jancode, :brand, :price, :supplier_id, images: [], remove_images: [])
     end
 end

@@ -1,7 +1,7 @@
 class Cloth < ApplicationRecord
 	belongs_to :supplier, class_name: "User"
 	has_many_attached :images
-	attr_accessor :remove_image
+	attr_accessor :remove_images
 
 
 	def images_or_default
