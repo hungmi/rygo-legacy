@@ -5,12 +5,12 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%= Cloth.human_attribute_name('code') %></th>
+      <th style="width: 250px;"><%= Cloth.human_attribute_name('images') %></th>
+      <th style="min-width: 180px;"><%= Cloth.human_attribute_name('code') %></th>
       <th><%= Cloth.human_attribute_name('jancode') %></th>
-      <th><%= Cloth.human_attribute_name('brand') %></th>
-      <th><%= Cloth.human_attribute_name('supplier') %></th>
-      <th><%= Cloth.human_attribute_name('price') %></th>
-      <th>登録時間</th>
+      <th style="min-width: 100px;"><%= Cloth.human_attribute_name('brand') %></th>
+      <th style="min-width: 100px;"><%= Cloth.human_attribute_name('supplier_id') %></th>
+      <th style="min-width: 100px;"><%= Cloth.human_attribute_name('price') %></th>
       <th>更新時間</th>
       <th></th>
     </tr>
@@ -18,12 +18,36 @@
   <tbody>
     <% @cloths.each do |cloth| %>
       <tr>
+        <td>
+          <% if cloth.images.attached? %>
+            <div id="carouselExampleIndicators<%= cloth.id %>" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <% (1..cloth.images.size).each do |i| %>
+                  <li data-target="#carouselExampleIndicators<%= cloth.id %>" data-slide-to="<%= i %>" class="<%= 'active' if i == 1 %>"></li>
+                <% end %>
+              </ol>
+              <div class="carousel-inner">
+                <% cloth.images.each_with_index do |image, index| %>
+                  <div class="carousel-item <%= 'active' if index == 0 %>" style="padding-top: 145%;background: url('<%= url_for(image) %>') center center no-repeat; background-size: contain;">
+                  </div>
+                <% end %>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators<%= cloth.id %>" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators<%= cloth.id %>" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          <% end %>
+        </td>
         <td><%= cloth.code %></td>
         <td><%= cloth.jancode %></td>
         <td><%= cloth.brand %></td>
         <td><%= cloth.supplier.name %></td>
         <td><%= cloth.price %></td>
-        <td><%= cloth.created_at.strftime("%F %T") %></td>
         <td><%= timeago(cloth.updated_at) %></td>
         <td class="text-right">
           <div class="dropdown">

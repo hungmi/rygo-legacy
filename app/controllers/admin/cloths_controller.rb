@@ -38,7 +38,7 @@ class Admin::ClothsController < AdminController
   def update
     if @cloth.update(cloth_params)
       # byebug #cloth_params[:remove_images]
-      @cloth.images.where(id: params[:cloth][:remove_images].keys).destroy_all
+      @cloth.images.where(id: params[:cloth][:remove_images].keys).destroy_all if params[:cloth][:remove_images].present?
       flash[:success] = "更新成功。"
       redirect_to [:admin, @cloth]
     else

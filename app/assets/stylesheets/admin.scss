@@ -8,4 +8,9 @@ body, html {
   height: 3px;
   background-color: #56CC9D;
 }
+@include media-breakpoint-up(xl) {
+  .container {
+    max-width: 1300px;
+  }
+}
 @import 'admin/dashboard';
