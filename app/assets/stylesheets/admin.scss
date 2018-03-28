@@ -1,0 +1,11 @@
+@import "bootstrap";
+@import "bootstrap.min";
+@import "sessions";
+body, html {
+	font-family: 'Noto Sans TC', sans-serif;
+}
+.turbolinks-progress-bar {
+  height: 3px;
+  background-color: #56CC9D;
+}
+@import 'admin/dashboard';

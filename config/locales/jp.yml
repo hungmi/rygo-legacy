@@ -1,0 +1,11 @@
+jp:
+  activerecord:
+    models:
+      cloth: 衣服
+      order: 訂單
+    attributes:
+      cloth:
+        code: 品番
+        jancode: JAN コード
+        brand: 品牌
+        price: 零售價
