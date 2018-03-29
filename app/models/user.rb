@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	enum roles: { admin: 0, supplier: 1, customer: 2 }
+	enum roles: { admin: 0, supplier: 1 }
 	validates :name, presence: true, uniqueness: true
 	validates :password_confirmation, presence: true, on: :create
 	has_secure_password

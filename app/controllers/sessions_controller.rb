@@ -3,11 +3,7 @@ class SessionsController < AdminController
 		authorize :session, :new?
 		if user_signed_in?
 			flash[:success] = "您已經登入"
-			if current_user.admin? || current_user.supplier?
-				redirect_to admin_path
-			else
-				redirect_to root_path
-			end
+			redirect_to admin_path
 		end
 	end
 
@@ -15,7 +11,7 @@ class SessionsController < AdminController
 		@user = User.find_by_name(params[:session][:user_name])
 		if @user.present? && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-			redirect_to (params[:session][:back_path] || (current_user.customer? ? root_path : admin_path))
+			redirect_to (params[:session][:back_path].present? ? params[:session][:back_path] : admin_path)
 		else
       flash.now[:danger] = "帳號或密碼錯誤。"
 			render :new

@@ -4,7 +4,7 @@ class Admin::ClothsController < AdminController
   # GET /cloths
   def index
     authorize [:admin, :cloth], :index?
-    @cloths = policy_scope(Cloth).order(updated_at: :desc)
+    @cloths = Admin::ClothPolicy::Scope.new(current_user, Cloth).resolve.order(updated_at: :desc)
   end
 
   # GET /cloths/1
@@ -28,7 +28,7 @@ class Admin::ClothsController < AdminController
 
     if @cloth.save
       flash[:success] = "建立成功。"
-      redirect_to @cloth
+      redirect_to [:admin, @cloth]
     else
       render :new
     end
@@ -50,7 +50,7 @@ class Admin::ClothsController < AdminController
   def destroy
     @cloth.destroy
     flash[:success] = "刪除成功。"
-    redirect_to cloths_url
+    redirect_to admin_cloths_url
   end
 
   private
