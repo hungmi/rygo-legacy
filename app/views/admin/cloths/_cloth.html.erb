@@ -56,6 +56,14 @@
           <% end %>
         </p>
       </li>
+
+      <li class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">更新時間</h5>
+        </div>
+        <p class="mb-1"><%= timeago(cloth.updated_at) %></p>
+      </li>
+
       <li class="list-group-item flex-column align-items-start d-none d-sm-block">
         <%= link_to "編集する", edit_admin_cloth_path(cloth), class: "btn btn-primary" %>
         <%= link_to "新しい注文", new_admin_order_item_path(cloth_id: cloth.id), class: "btn btn-link" %>

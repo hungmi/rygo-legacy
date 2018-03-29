@@ -19,4 +19,5 @@ $(document).on("change", "[name*='remove_images']", function() {
 
 $(document).on("turbolinks:load", function() {
   flatpickr("#order_item_deliver_date", { "locale": "ja" });
+  $("time.timeago").timeago();
 })
