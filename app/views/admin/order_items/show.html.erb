@@ -1,0 +1,51 @@
+<%= link_to admin_order_items_path, class: "btn btn-link" do %>
+  &#8592; 戻る
+<% end %>
+<%= link_to "編集する", edit_admin_order_item_path(@order_item), class: "btn btn-success float-right" %>
+<%= link_to '削除', [:admin, @order_item], method: :delete, data: { confirm: "#{@order_item.cloth.code}の注文を削除しますか？" }, class: "btn btn-danger float-right mr-2" %>
+
+<h1 class="h2"><%= OrderItem.model_name.human %> #<%= @order_item.id %></h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= render "admin/cloths/cloth_img_carousel", cloth: @order_item.cloth %>
+  </div>
+  <div class="col-md-6">
+    <div class="list-group list-group-flush">  
+      <li href="#" class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= OrderItem.human_attribute_name("cloth_id") %></h5>
+        </div>
+        <p class="mb-1"><%= @order_item.cloth.code %></p>
+      </li>
+      
+      <li href="#" class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= Cloth.human_attribute_name("supplier_id") %></h5>
+        </div>
+        <p class="mb-1"><%= @order_item.cloth.supplier.name %></p>
+      </li>
+      
+      <li href="#" class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= OrderItem.human_attribute_name("amount") %></h5>
+        </div>
+        <p class="mb-1"><%= @order_item.amount %></p>
+      </li>
+      
+      <li href="#" class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= OrderItem.human_attribute_name("deliver_date") %></h5>
+        </div>
+        <p class="mb-1"><%= @order_item.deliver_date %></p>
+      </li>
+      
+      <li href="#" class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= OrderItem.human_attribute_name("status") %></h5>
+        </div>
+        <p class="mb-1"><%= I18n.t "activerecord.order_item_status.#{@order_item.status}" %></p>
+      </li>
+    </div>
+  </div>
+</div>

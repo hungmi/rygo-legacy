@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 	get "admin", to: redirect("/admin/cloths")	
 	namespace :admin do
+  	resources :order_items
 		resources :cloths
   	resources :users
   end

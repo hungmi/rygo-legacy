@@ -6,6 +6,7 @@
 //= require bootstrap
 //= require jquery.timeago
 //= require previewable
+//= require order_item
 
 $(document).on("change", "[name*='remove_images']", function() {
 	console.log(this.checked)

@@ -2,7 +2,7 @@ ja:
   activerecord:
     models:
       cloth: 衣服
-      order: 注文
+      order_item: 注文
     attributes:
       cloth:
         code: 品番
@@ -11,6 +11,15 @@ ja:
         supplier_id: メーカー
         price: 小売価格
         images: 写真
+      order_item:
+        cloth_id: 衣服品番
+        amount: 数量
+        deliver_date: 発送日
+        status: 配送状況
+    order_item_status:
+      not_yet_shipped: 未発送
+      shipped: 発送しました
+      delivered: 配達しました
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

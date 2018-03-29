@@ -18,31 +18,7 @@
   <tbody>
     <% @cloths.each do |cloth| %>
       <tr>
-        <td>
-          <% if cloth.images.attached? %>
-            <div id="carouselExampleIndicators<%= cloth.id %>" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <% (1..cloth.images.size).each do |i| %>
-                  <li data-target="#carouselExampleIndicators<%= cloth.id %>" data-slide-to="<%= i %>" class="<%= 'active' if i == 1 %>"></li>
-                <% end %>
-              </ol>
-              <div class="carousel-inner">
-                <% cloth.images.each_with_index do |image, index| %>
-                  <div class="carousel-item <%= 'active' if index == 0 %>" style="padding-top: 145%;background: url('<%= url_for(image) %>') center center no-repeat; background-size: contain;">
-                  </div>
-                <% end %>
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleIndicators<%= cloth.id %>" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleIndicators<%= cloth.id %>" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-          <% end %>
-        </td>
+        <td><%= render "admin/cloths/cloth_img_carousel", cloth: cloth %></td>
         <td><%= cloth.code %></td>
         <td><%= cloth.jancode %></td>
         <td><%= cloth.brand %></td>
@@ -57,6 +33,7 @@
             <div class="dropdown-menu">
               <%= link_to '見る', [:admin, cloth], class: "dropdown-item" %>
               <%= link_to "編集", edit_admin_cloth_path(cloth), class: "dropdown-item" %>
+              <%= link_to "新しい注文", new_admin_order_item_path(cloth_id: cloth.id), class: "dropdown-item" %>
               <div class="dropdown-divider"></div>
               <%= link_to '削除', [:admin, cloth], method: :delete, data: { confirm: "#{cloth.code}を削除しますか？" }, class: "dropdown-item" %>
             </div>
