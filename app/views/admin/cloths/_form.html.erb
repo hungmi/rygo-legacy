@@ -59,15 +59,19 @@
   	    </div>
       <% end %>
     </div>
-    <div class="form-group <%= cloth.errors[:supplier_id].present? ? 'has-danger' : '' %>">
-      <%= f.label :supplier_id %>
-      <%= f.select :supplier_id, User.supplier.all.pluck(:name, :id), {}, class: "form-control #{cloth.errors[:supplier_id].present? ? 'is-invalid' : ''}" %>
-      <% if cloth.errors[:supplier_id].present? %>
-        <div class="invalid-feedback">
-          <%= cloth.errors[:supplier_id].join(", ") %>
-        </div>
-      <% end %>
-    </div>
+    <% if current_user.admin? %>
+      <div class="form-group <%= cloth.errors[:supplier_id].present? ? 'has-danger' : '' %>">
+        <%= f.label :supplier_id %>
+        <%= f.select :supplier_id, User.supplier.all.pluck(:name, :id), { prompt: true }, class: "form-control #{cloth.errors[:supplier_id].present? ? 'is-invalid' : ''}" %>
+        <% if cloth.errors[:supplier_id].present? %>
+          <div class="invalid-feedback">
+            <%= cloth.errors[:supplier_id].join(", ") %>
+          </div>
+        <% end %>
+      </div>
+    <% elsif current_user.supplier? %>
+      <%= f.hidden_field :supplier_id, value: current_user.id %>
+    <% end %>
     <div class="form-group <%= cloth.errors[:price].present? ? 'has-danger' : '' %>">
       <%= f.label :price %>
       <%= f.text_field :price, class: "form-control #{cloth.errors[:price].present? ? 'is-invalid' : ''}" %>
