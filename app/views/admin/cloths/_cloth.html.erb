@@ -1,0 +1,72 @@
+<h2 class="h5" id="cloth-<%= cloth.id %>"><%= Cloth.human_attribute_name("code") %>：<%= cloth.code %></h2>
+<div class="row">
+  <div class="col-6">
+    <%= render "admin/cloths/cloth_img_carousel", cloth: cloth %>
+  </div>
+  <div class="col-6">
+    <div class="list-group list-group-flush">
+      <li class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= Cloth.human_attribute_name("jancode") %></h5>
+        </div>
+        <p class="mb-1">
+          <% if cloth.jancode.present? %>
+            <%= cloth.jancode %>
+          <% else %>
+            <span class="text-muted">未記入</span>
+          <% end %>
+        </p>
+      </li>
+      
+      <li class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= Cloth.human_attribute_name("brand") %></h5>
+        </div>
+        <p class="mb-1">
+          <% if cloth.brand.present? %>
+            <%= cloth.brand %>
+          <% else %>
+            <span class="text-muted">未記入</span>
+          <% end %>
+        </p>
+      </li>
+
+      <li class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= Cloth.human_attribute_name("supplier_id") %></h5>
+        </div>
+        <p class="mb-1">
+          <% if cloth.supplier.present? %>
+            <%= cloth.supplier.name %>
+          <% else %>
+            <span class="text-muted">未記入</span>
+          <% end %>
+        </p>
+      </li>
+      
+      <li class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= Cloth.human_attribute_name("price") %></h5>
+        </div>
+        <p class="mb-1">
+          <% if cloth.price.present? %>
+            <%= cloth.price %>
+          <% else %>
+            <span class="text-muted">未記入</span>
+          <% end %>
+        </p>
+      </li>
+      <li class="list-group-item flex-column align-items-start d-none d-sm-block">
+        <%= link_to "編集する", edit_admin_cloth_path(cloth), class: "btn btn-primary" %>
+        <%= link_to "新しい注文", new_admin_order_item_path(cloth_id: cloth.id), class: "btn btn-link" %>
+        <%= link_to '削除', [:admin, cloth], method: :delete, data: { confirm: "#{cloth.code}を削除しますか？" }, class: "btn btn-danger float-right" %>
+      </li>
+    </div>
+  </div>
+</div>
+<div class="mt-3 d-sm-none">
+  <%= link_to "編集する", edit_admin_cloth_path(cloth), class: "btn btn-primary" %>
+  <%= link_to "新しい注文", new_admin_order_item_path(cloth_id: cloth.id), class: "btn btn-link" %>
+  <%= link_to '削除', [:admin, cloth], method: :delete, data: { confirm: "#{cloth.code}を削除しますか？" }, class: "btn btn-danger float-right" %>
+</div>
+<hr class="my-5">

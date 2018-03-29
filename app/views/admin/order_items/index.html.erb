@@ -2,46 +2,55 @@
   <%= OrderItem.model_name.human %>履歴
   <%= link_to "登録", new_admin_order_item_path, class: "btn btn-success float-right" %>
 </h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th style="width: 250px;"><%= Cloth.human_attribute_name('images') %></th>
-      <th><%= OrderItem.human_attribute_name('cloth_id') %></th>
-      <th><%= Cloth.human_attribute_name('supplier_id') %></th>
-      <th><%= OrderItem.human_attribute_name('amount') %></th>
-      <th><%= OrderItem.human_attribute_name('deliver_date') %></th>
-      <th><%= OrderItem.human_attribute_name('status') %></th>
-      <th>更新時間</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order_items.each do |order_item| %>
+<div class="row">
+  <% @order_items.each do |order_item| %>
+    <div class="col-lg-9">
+      <%= render order_item %>
+    </div>
+  <% end %>
+</div>
+<div class="table-responsive d-none">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= render "admin/cloths/cloth_img_carousel", cloth: order_item.cloth %></td>
-        <td><%= order_item.cloth.code %></td>
-        <td><%= order_item.cloth.supplier.name %></td>
-        <td><%= order_item.amount %></td>
-        <td><%= order_item.deliver_date %></td>
-        <td><%= I18n.t "activerecord.order_item_status.#{order_item.status}" %></td>
-        <td><%= timeago(order_item.updated_at) %></td>
-        <td class="text-right">
-          <div class="dropdown">
-            <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
-              <i class="material-icons">&#xE5D3;</i>
-            </button>
-            <div class="dropdown-menu">
-              <%= link_to '見る', [:admin, order_item], class: "dropdown-item" %>
-              <%= link_to "編集", edit_admin_order_item_path(order_item), class: "dropdown-item" %>
-              <div class="dropdown-divider"></div>
-              <%= link_to '削除', [:admin, order_item], method: :delete, data: { confirm: "#{order_item.cloth.code}の注文を削除しますか？" }, class: "dropdown-item" %>
-            </div>
-          </div>
-        </td>
+        <th style="min-width: 250px;"><%= Cloth.human_attribute_name('images') %></th>
+        <th style="min-width: 180px;"><%= OrderItem.human_attribute_name('cloth_id') %></th>
+        <th style="min-width: 100px;"><%= Cloth.human_attribute_name('supplier_id') %></th>
+        <th style="min-width: 60px;"><%= OrderItem.human_attribute_name('amount') %></th>
+        <th style="min-width: 110px;"><%= OrderItem.human_attribute_name('deliver_date') %></th>
+        <th style="min-width: 100px;"><%= OrderItem.human_attribute_name('status') %></th>
+        <th style="min-width: 100px;">更新時間</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @order_items.each do |order_item| %>
+        <tr>
+          <td><%= render "admin/cloths/cloth_img_carousel", cloth: order_item.cloth %></td>
+          <td><%= order_item.cloth.code %></td>
+          <td><%= order_item.cloth.supplier.name %></td>
+          <td><%= order_item.amount %></td>
+          <td><%= order_item.deliver_date %></td>
+          <td><%= I18n.t "activerecord.order_item_status.#{order_item.status}" %></td>
+          <td><%= timeago(order_item.updated_at) %></td>
+          <td class="text-right">
+            <div class="dropdown">
+              <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                <i class="material-icons">&#xE5D3;</i>
+              </button>
+              <div class="dropdown-menu">
+                <%= link_to '見る', [:admin, order_item], class: "dropdown-item" %>
+                <%= link_to "編集", edit_admin_order_item_path(order_item), class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to '削除', [:admin, order_item], method: :delete, data: { confirm: "#{order_item.cloth.code}の注文を削除しますか？" }, class: "dropdown-item" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <script type="text/javascript">
   $(function() {

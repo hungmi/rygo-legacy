@@ -2,7 +2,14 @@
   <%= Cloth.model_name.human %>
   <%= link_to "登録", new_admin_cloth_path, class: "btn btn-success float-right" %>
 </h1>
-<table class="table">
+<div class="row">
+  <% @cloths.each do |cloth| %>
+    <div class="col-lg-9">
+      <%= render cloth %>
+    </div>
+  <% end %>
+</div>
+<table class="table d-none">
   <thead>
     <tr>
       <th style="width: 250px;"><%= Cloth.human_attribute_name('images') %></th>

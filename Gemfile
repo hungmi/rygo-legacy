@@ -65,3 +65,4 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'awesome_rails_console'
 gem 'pundit'
 gem 'sidekiq'
+gem "browser"

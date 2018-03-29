@@ -7,7 +7,7 @@
     </ol>
     <div class="carousel-inner">
       <% cloth.images.each_with_index do |image, index| %>
-        <div class="carousel-item <%= 'active' if index == 0 %>" style="padding-top: 145%;background: url('<%= url_for(image) %>') center center no-repeat; background-size: contain;">
+        <div class="carousel-item <%= 'active' if index == 0 %>" style="padding-top: 140%;background: url('<%= url_for(image) %>') center center no-repeat; background-size: contain;">
         </div>
       <% end %>
     </div>

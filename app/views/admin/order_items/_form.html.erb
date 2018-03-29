@@ -45,7 +45,11 @@
     	    </div>
         <% end %>
       </div>
-      <%= link_to "キャンセル", admin_order_items_path, class: "btn btn-link text-danger" %>
+      <% if params[:cloth_id].present? %>
+        <%= link_to "キャンセル", admin_cloths_path(anchor: "cloth-#{params[:cloth_id]}"), class: "btn btn-link text-danger" %>
+      <% else %>
+        <%= link_to "キャンセル", admin_order_items_path(anchor: "order_item-#{params[:id]}"), class: "btn btn-link text-danger" %>
+      <% end %>
       <%= f.submit class: "btn btn-primary float-right" %>
     </div>
   </div>

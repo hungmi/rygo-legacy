@@ -16,3 +16,7 @@ $(document).on("change", "[name*='remove_images']", function() {
 		$(this).parents("div.card").find("img.card-img-top").css("opacity", "1")
 	}
 })
+
+$(document).on("turbolinks:load", function() {
+  flatpickr("#order_item_deliver_date", { "locale": "ja" });
+})
