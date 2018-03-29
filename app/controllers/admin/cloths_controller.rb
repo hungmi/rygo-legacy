@@ -3,8 +3,8 @@ class Admin::ClothsController < AdminController
 
   # GET /cloths
   def index
-    authorize [:admin, :cloth], :index?
-    @cloths = Admin::ClothPolicy::Scope.new(current_user, Cloth).resolve.order(updated_at: :desc)
+    authorize :cloth, :index?
+    @cloths = policy_scope(Cloth).order(updated_at: :desc)
   end
 
   # GET /cloths/1
@@ -14,7 +14,7 @@ class Admin::ClothsController < AdminController
   # GET /cloths/new
   def new
     @cloth = Cloth.new
-    authorize [:admin, @cloth]
+    authorize @cloth
   end
 
   # GET /cloths/1/edit
@@ -24,7 +24,7 @@ class Admin::ClothsController < AdminController
   # POST /cloths
   def create
     @cloth = Cloth.new(cloth_params)
-    authorize [:admin, @cloth]
+    authorize @cloth
 
     if @cloth.save
       flash[:success] = "建立成功。"
@@ -58,7 +58,7 @@ class Admin::ClothsController < AdminController
     # Use callbacks to share common setup or constraints between actions.
     def set_cloth
       @cloth = Cloth.find(params[:id])
-    	authorize @cloth
+      authorize @cloth
     end
 
     # Only allow a trusted parameter "white list" through.
