@@ -27,7 +27,7 @@ class Admin::OrderItemsController < AdminController
     authorize @order_item
 
     if @order_item.save
-      flash[:success] = "建立成功。"
+      flash[:success] = "登録に成功しました。"
       redirect_to [:admin, @order_item]
     else
       render :new
@@ -37,7 +37,7 @@ class Admin::OrderItemsController < AdminController
   # PATCH/PUT /order_items/1
   def update
     if @order_item.update(order_item_params)
-      flash[:success] = "更新成功。"
+      flash[:success] = "更新に成功しました。"
       redirect_to [:admin, @order_item]
     else
       render :edit
@@ -47,7 +47,7 @@ class Admin::OrderItemsController < AdminController
   # DELETE /order_items/1
   def destroy
     @order_item.destroy
-    flash[:success] = "刪除成功。"
+    flash[:success] = "削除に成功しました。"
     redirect_to admin_order_items_url
   end
 
@@ -61,6 +61,6 @@ class Admin::OrderItemsController < AdminController
 
     # Only allow a trusted parameter "white list" through.
     def order_item_params
-      params.require(:order_item).permit(:cloth_id, :amount, :deliver_date, :status)
+      params.require(:order_item).permit(:cloth_id, :amount, :deliver_month, :deliver_period, :status)
     end
 end

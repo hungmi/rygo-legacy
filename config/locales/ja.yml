@@ -14,12 +14,17 @@ ja:
       order_item:
         cloth_id: 衣服品番
         amount: 数量
-        deliver_date: 発送日
+        deliver_month: 発送時間
+        deliver_period: 発送時間
         status: 配送状況
     order_item_status:
       not_yet_shipped: 未発送
       shipped: 発送しました
       delivered: 配達しました
+    order_item_deliver_period:
+      up: 上旬
+      middle: 中旬
+      down: 下旬
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

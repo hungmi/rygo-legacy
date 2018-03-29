@@ -27,7 +27,7 @@ class Admin::ClothsController < AdminController
     authorize @cloth
 
     if @cloth.save
-      flash[:success] = "建立成功。"
+      flash[:success] = "登録に成功しました。"
       redirect_to [:admin, @cloth]
     else
       render :new
@@ -39,7 +39,7 @@ class Admin::ClothsController < AdminController
     if @cloth.update(cloth_params)
       # byebug #cloth_params[:remove_images]
       @cloth.images.where(id: params[:cloth][:remove_images].keys).destroy_all if params[:cloth][:remove_images].present?
-      flash[:success] = "更新成功。"
+      flash[:success] = "更新に成功しました。"
       redirect_to [:admin, @cloth]
     else
       render :edit
@@ -49,7 +49,7 @@ class Admin::ClothsController < AdminController
   # DELETE /cloths/1
   def destroy
     @cloth.destroy
-    flash[:success] = "刪除成功。"
+    flash[:success] = "削除に成功しました。"
     redirect_to admin_cloths_url
   end
 

@@ -50,7 +50,8 @@ ActiveRecord::Schema.define(version: 2018_03_29_074100) do
   create_table "order_items", force: :cascade do |t|
     t.bigint "cloth_id"
     t.integer "amount", null: false
-    t.date "deliver_date"
+    t.integer "deliver_month"
+    t.integer "deliver_period", default: 0
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
