@@ -2,7 +2,7 @@ class SessionsController < AdminController
 	def new
 		authorize :session, :new?
 		if user_signed_in?
-			flash[:success] = "您已經登入"
+			flash[:success] = "すでにログインしています。"
 			redirect_to admin_path
 		end
 	end
@@ -13,7 +13,7 @@ class SessionsController < AdminController
       session[:user_id] = @user.id
 			redirect_to (params[:session][:back_path].present? ? params[:session][:back_path] : admin_path)
 		else
-      flash.now[:danger] = "帳號或密碼錯誤。"
+      flash.now[:danger] = "ユーザー名またはパスワードが違います。"
 			render :new
 		end
 		authorize :session, :create?
@@ -23,7 +23,7 @@ class SessionsController < AdminController
   	authorize :session, :destroy?
     session.delete(:user_id)
     @current_user = nil
-    flash.now[:success] = "已登出。"
+    flash[:success] = "ログアウトしました。"
     redirect_to signin_path
   end
 end

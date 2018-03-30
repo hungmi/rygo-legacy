@@ -2,7 +2,6 @@
   <%= OrderItem.model_name.human %>履歴
   <%= link_to "登録", new_admin_order_item_path, class: "btn btn-success float-right" %>
 </h1>
-<%= notice_message %>
 <div class="row">
   <% @order_items.each do |order_item| %>
     <div class="col-lg-9">

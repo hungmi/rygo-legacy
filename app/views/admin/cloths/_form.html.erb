@@ -1,23 +1,21 @@
 <%= form_with model: [:admin, cloth], local: true, class: "mb-5" do |f| %>
   <% if cloth.images.attached? %>
-    <% cloth.images.each_slice(4) do |image_row| %>
-      <div class="card-deck mb-4">
-        <% image_row.each do |image| %>
-          <div class="card" style="max-width: 25%;">
-            <img class="card-img-top" src="<%= url_for(image) %>" alt="Card image cap">
-            <div class="card-body py-2">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <%= check_box_tag "cloth[remove_images][#{image.id}]", "true", false, { class: "form-check-input mr-0" } %>
-                  <!-- <input class="form-check-input" type="checkbox" value="" checked=""> -->
-                  削除
-                </label>
-              </div>
+    <div class="row mb-4">
+      <% cloth.images.each do |image| %>
+        <div class="card col-sm-2 col-4">
+          <img class="card-img-top" src="<%= url_for(image) %>" alt="Card image cap">
+          <div class="card-body py-2">
+            <div class="form-check">
+              <label class="form-check-label">
+                <%= check_box_tag "cloth[remove_images][#{image.id}]", "true", false, { class: "form-check-input mr-0" } %>
+                <!-- <input class="form-check-input" type="checkbox" value="" checked=""> -->
+                削除
+              </label>
             </div>
           </div>
-        <% end %>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
   <div class="offset-sm-3 col-sm-6">
     <div class="form-group <%= cloth.errors[:images].present? ? 'has-danger' : '' %>">

@@ -1,16 +1,23 @@
-<h2 class="h5" id="order_item-<%= order_item.id %>"><%= OrderItem.model_name.human %> #<%= order_item.created_at.strftime("%y%m%d%H%M%S") %></h2>
-
-<div class="row">
+<div class="row" id="order_item-<%= order_item.id %>">
   <div class="col-6">
     <%= render "admin/cloths/cloth_img_carousel", cloth: order_item.cloth %>
   </div>
   <div class="col-6">
-    <div class="list-group list-group-flush">  
+    <div class="list-group list-group-flush">
+      <li href="#" class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= OrderItem.model_name.human %></h5>
+        </div>
+        <p class="mb-1 better-spacing">
+          #<%= order_item.created_at.strftime("%y%m%d%H%M%S") %>
+        </p>
+      </li>
+
       <li href="#" class="list-group-item flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1"><%= OrderItem.human_attribute_name("cloth_id") %></h5>
         </div>
-        <p class="mb-1">
+        <p class="mb-1 better-spacing">
           <% if order_item.cloth.present? %>
             <%= order_item.cloth.code %>
           <% else %>
