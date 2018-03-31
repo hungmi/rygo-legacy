@@ -9,12 +9,12 @@
       <% end %>
     </div>
     <div class="col-md-6">
-      <div class="form-group <%= order_item.errors[:cloth_id].present? ? 'has-danger' : '' %>">
+      <div class="form-group <%= order_item.errors[:cloth].present? ? 'has-danger' : '' %>">
         <%= f.label :cloth_id %>
-        <%= f.collection_select :cloth_id, current_user.admin? ? Cloth.all : current_user.cloths, :id, :code, { prompt: true, selected: ordered_cloth_id }, class: "form-control #{order_item.errors[:cloth_id].present? ? 'is-invalid' : ''}" %>
-        <% if order_item.errors[:cloth_id].present? %>
+        <%= f.collection_select :cloth_id, current_user.admin? ? Cloth.all : current_user.cloths, :id, :code, { prompt: true, selected: ordered_cloth_id }, class: "form-control #{order_item.errors[:cloth].present? ? 'is-invalid' : ''}" %>
+        <% if order_item.errors[:cloth].present? %>
     	    <div class="invalid-feedback">
-    	      <%= order_item.errors[:cloth_id].join(", ") %>
+    	      <%= order_item.errors[:cloth].join(", ") %>
     	    </div>
         <% end %>
       </div>

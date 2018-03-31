@@ -4,7 +4,7 @@ class Admin::UserPolicy < AdminPolicy
   end
 
   def new?
-    user.admin?
+    create?
   end
 
   def create?
@@ -17,7 +17,7 @@ class Admin::UserPolicy < AdminPolicy
 
   def update?
     user.present? && (user == record || user.admin?)
-    # 因為沒有 admin, 先設定為大家可以互相修改
+    # 只有自己或 admin 可以修改
   end
 
   def edit?

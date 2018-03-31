@@ -8,7 +8,7 @@ class Admin::ClothsController < AdminController
     @cloths = if current_user.admin?
       Cloth.all
     elsif current_user.supplier?
-      current_user.cloths.order(updated_at: :desc)
+      current_user.cloths
     end.order(updated_at: :desc)
   end
 

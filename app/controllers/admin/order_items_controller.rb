@@ -5,11 +5,11 @@ class Admin::OrderItemsController < AdminController
   def index
     authorize [:admin, :order_item], :index?
     
-    @order_items = if current_user.admin?
-      OrderItem.all
-    elsif current_user.supplier?
-      current_user.order_items
-    end.order(updated_at: :desc)
+    @order_items =  if current_user.admin?
+                      OrderItem.all
+                    elsif current_user.supplier?
+                      current_user.order_items
+                    end.order(updated_at: :desc)
   end
 
   # GET /order_items/1
@@ -41,11 +41,16 @@ class Admin::OrderItemsController < AdminController
 
   # PATCH/PUT /order_items/1
   def update
-    if @order_item.update(order_item_params)
-      flash[:success] = "更新に成功しました。"
-      redirect_to [:admin, @order_item]
+    # 若此訂單的衣服被手動更改 html 成其他廠商的 id，也視為 not authorized
+    if current_user.admin? || current_user.cloth_ids.include?(order_item_params[:cloth_id].to_i)
+      if @order_item.update(order_item_params)
+        flash[:success] = "更新に成功しました。"
+        redirect_to [:admin, @order_item]
+      else
+        render :edit
+      end
     else
-      render :edit
+      raise Pundit::NotAuthorizedError
     end
   end
 

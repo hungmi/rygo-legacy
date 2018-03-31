@@ -1,18 +1,14 @@
 class Admin::ClothPolicy < AdminPolicy
-	def index?
-    user.present?
-  end
-
   def show?
     user.present? && (user.id == record.supplier_id) || user.admin?
   end
 
   def create?
-    user.present?
+    update?
   end
 
   def new?
-    create?
+    update?
   end
 
   def update?
