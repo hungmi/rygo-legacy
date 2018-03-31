@@ -1,0 +1,7 @@
+<% if policy([:admin, :user]).index? %>
+	<%= link_to admin_users_path, class: "btn btn-link" do %>
+	  &#8592; 返回列表
+	<% end %>
+<% end %>
+<h1 class="h2">プロフィール</h1>
+<%= render @user %>

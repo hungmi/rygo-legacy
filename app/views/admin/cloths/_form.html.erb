@@ -58,12 +58,12 @@
       <% end %>
     </div>
     <% if current_user.admin? %>
-      <div class="form-group <%= cloth.errors[:supplier_id].present? ? 'has-danger' : '' %>">
+      <div class="form-group <%= cloth.errors[:supplier].present? ? 'has-danger' : '' %>">
         <%= f.label :supplier_id %>
-        <%= f.select :supplier_id, User.supplier.all.pluck(:name, :id), { prompt: true }, class: "form-control #{cloth.errors[:supplier_id].present? ? 'is-invalid' : ''}" %>
-        <% if cloth.errors[:supplier_id].present? %>
+        <%= f.select :supplier_id, User.supplier.all.pluck(:name, :id), { include_blank: true }, class: "form-control #{cloth.errors[:supplier].present? ? 'is-invalid' : ''}" %>
+        <% if cloth.errors[:supplier].present? %>
           <div class="invalid-feedback">
-            <%= cloth.errors[:supplier_id].join(", ") %>
+            <%= cloth.errors[:supplier].join(", ") %>
           </div>
         <% end %>
       </div>

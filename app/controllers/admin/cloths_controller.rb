@@ -3,8 +3,13 @@ class Admin::ClothsController < AdminController
 
   # GET /cloths
   def index
-    authorize :cloth, :index?
-    @cloths = policy_scope(Cloth).order(updated_at: :desc)
+    authorize [:admin, :cloth], :index?
+    
+    @cloths = if current_user.admin?
+      Cloth.all
+    elsif current_user.supplier?
+      current_user.cloths.order(updated_at: :desc)
+    end.order(updated_at: :desc)
   end
 
   # GET /cloths/1
@@ -14,7 +19,7 @@ class Admin::ClothsController < AdminController
   # GET /cloths/new
   def new
     @cloth = Cloth.new
-    authorize @cloth
+    authorize [:admin, @cloth]
   end
 
   # GET /cloths/1/edit
@@ -24,7 +29,7 @@ class Admin::ClothsController < AdminController
   # POST /cloths
   def create
     @cloth = Cloth.new(cloth_params)
-    authorize @cloth
+    authorize [:admin, @cloth]
 
     if @cloth.save
       flash[:success] = "登録に成功しました。"
@@ -58,7 +63,7 @@ class Admin::ClothsController < AdminController
     # Use callbacks to share common setup or constraints between actions.
     def set_cloth
       @cloth = Cloth.find(params[:id])
-      authorize @cloth
+      authorize [:admin, @cloth]
     end
 
     # Only allow a trusted parameter "white list" through.

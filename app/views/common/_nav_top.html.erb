@@ -1,20 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
-  <a class="navbar-brand" href="/admin">龍運服飾管理</a>
+  <a class="navbar-brand" href="/">龍運有限会社</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% ["cloth"].each do |singular_name| %>
+      <% ["cloth", "order_item"].each do |singular_name| %>
       <li class='nav-item <%= 'active' if controller_name == singular_name.pluralize %>'>
         <a class="nav-link" href="/admin/<%= singular_name.pluralize %>"><%= I18n.t("activerecord.models.#{singular_name}") %></a>
       </li>
       <% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" name="s">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">搜尋</button>
+      <input class="form-control mr-sm-2" type="text" placeholder="検索" name="s">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">検索</button>
     </form>
     <% if user_signed_in? %>
       <ul class="navbar-nav ml-5">
@@ -23,9 +23,9 @@
             <%= current_user.name %>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">個人資料</a>
+            <%= link_to "設定", current_user, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
-            <%= link_to "登出", logout_path, class: "dropdown-item", method: :delete %>
+            <%= link_to "ログアウト", logout_path, class: "dropdown-item", method: :delete %>
           </div>
         </li>
         <li class="nav-item active">

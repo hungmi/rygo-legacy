@@ -1,4 +1,4 @@
-class SessionPolicy < ApplicationPolicy
+class Admin::SessionPolicy < AdminPolicy
 	def new?
 		true
 	end

@@ -6,9 +6,8 @@ Rails.application.routes.draw do
   	resources :order_items
 		resources :cloths
   	resources :users
+    get 'login', to: 'sessions#new'
+    post 'signin', to: 'sessions#create'
+    delete 'logout', to: 'sessions#destroy'
   end
-  
-  get 'signin', to: 'sessions#new'
-  post 'signin', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
 end

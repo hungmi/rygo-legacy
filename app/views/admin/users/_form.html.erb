@@ -1,0 +1,56 @@
+<%= form_with model: [:admin, user], local: true, class: "mb-5" do |f| %>
+  <div class="offset-sm-3 col-sm-6">
+    <div class="form-group <%= user.errors[:role].present? ? 'has-danger' : '' %>">
+      <%= f.label :role %>
+      <%= f.collection_select :role, I18n.t("activerecord.user_role"), :first, :last, {}, class: "form-control #{user.errors[:role].present? ? 'is-invalid' : ''}" %>
+      <% if user.errors[:role].present? %>
+        <div class="invalid-feedback">
+          <%= user.errors[:role].join(", ") %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-group <%= user.errors[:name].present? ? 'has-danger' : '' %>">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control #{user.errors[:name].present? ? 'is-invalid' : ''}" %>
+      <% if user.errors[:name].present? %>
+  	    <div class="invalid-feedback">
+  	      <%= user.errors[:name].join(", ") %>
+  	    </div>
+      <% end %>
+    </div>
+    <div class="form-group <%= user.errors[:password].present? ? 'has-danger' : '' %>">
+      <% if f.object.persisted? %>
+        <%= f.label :new_password %>
+      <% else %>
+        <%= f.label :password %>
+      <% end %>
+      
+      <%= f.password_field :password, placeholder: (f.object.persisted? ? "空欄のままなら変更しません" : ""), class: "form-control #{user.errors[:password].present? ? 'is-invalid' : ''}" %>
+      
+      <% if f.object.persisted? %>
+        <small id="passwordHelpBlock" class="form-text text-muted">空欄のままなら変更しません</small>
+      <% end %>
+      
+      <% if user.errors[:password].present? %>
+        <div class="invalid-feedback">
+          <%= user.errors[:password].join(", ") %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-group <%= user.errors[:password_confirmation].present? ? 'has-danger' : '' %>">
+      <% if f.object.persisted? %>
+        <%= f.label :new_password_confirmation %>
+      <% else %>
+        <%= f.label :password_confirmation %>
+      <% end %>
+      <%= f.password_field :password_confirmation, class: "form-control #{user.errors[:password_confirmation].present? ? 'is-invalid' : ''}" %>
+      <% if user.errors[:password_confirmation].present? %>
+        <div class="invalid-feedback">
+          <%= user.errors[:password_confirmation].join(", ") %>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to "キャンセル", [:admin, user], class: "btn btn-link text-danger" %>
+    <%= f.submit class: "btn btn-primary float-right" %>
+  </div>
+<% end %>

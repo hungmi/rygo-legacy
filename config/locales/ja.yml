@@ -3,6 +3,7 @@ ja:
     models:
       cloth: 衣服
       order_item: 注文
+      user: ユーザー
     attributes:
       cloth:
         code: 品番
@@ -14,9 +15,18 @@ ja:
       order_item:
         cloth_id: 衣服品番
         amount: 数量
-        deliver_month: 発送時間
-        deliver_period: 発送時間
+        deliver_month: 発送日
+        deliver_period: 発送日
         status: 配送状況
+      user:
+        id: ユーザーID
+        role: ロール
+        name: ユーザー名
+        password_digest: パスワード
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        new_password: 新しいパスワード
+        new_password_confirmation: 確認用新しいパスワード
     order_item_status:
       not_yet_shipped: 未発送
       shipped: 発送しました
@@ -25,6 +35,9 @@ ja:
       up: 上旬
       middle: 中旬
       down: 下旬
+    user_role:
+      admin: アドミニストレータ
+      supplier: メーカー
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
@@ -165,6 +178,7 @@ ja:
   helpers:
     select:
       prompt: 選択してください
+      include_blank: 選択してください
     submit:
       create: 登録する
       submit: 保存する

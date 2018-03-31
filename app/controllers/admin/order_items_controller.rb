@@ -3,8 +3,13 @@ class Admin::OrderItemsController < AdminController
 
   # GET /order_items
   def index
-    @order_items = OrderItem.all.order(updated_at: :desc)
-    authorize :order_item, :index?
+    authorize [:admin, :order_item], :index?
+    
+    @order_items = if current_user.admin?
+      OrderItem.all
+    elsif current_user.supplier?
+      current_user.order_items
+    end.order(updated_at: :desc)
   end
 
   # GET /order_items/1
@@ -14,7 +19,7 @@ class Admin::OrderItemsController < AdminController
   # GET /order_items/new
   def new
     @order_item = OrderItem.new
-    authorize @order_item
+    authorize [:admin, @order_item]
   end
 
   # GET /order_items/1/edit
@@ -24,7 +29,7 @@ class Admin::OrderItemsController < AdminController
   # POST /order_items
   def create
     @order_item = OrderItem.new(order_item_params)
-    authorize @order_item
+    authorize [:admin, @order_item]
 
     if @order_item.save
       flash[:success] = "登録に成功しました。"
@@ -56,7 +61,7 @@ class Admin::OrderItemsController < AdminController
     # Use callbacks to share common setup or constraints between actions.
     def set_order_item
       @order_item = OrderItem.find(params[:id])
-    	authorize @order_item
+    	authorize [:admin, @order_item]
     end
 
     # Only allow a trusted parameter "white list" through.

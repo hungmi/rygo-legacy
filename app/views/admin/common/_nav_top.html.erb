@@ -6,7 +6,8 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% ["cloth", "order_item"].each do |singular_name| %>
+      <% navs = policy([:admin, :user]).index? ? ["cloth", "order_item", "user"] : ["cloth", "order_item"] %>
+      <% navs.each do |singular_name| %>
       <li class='nav-item <%= 'active' if controller_name == singular_name.pluralize %>'>
         <a class="nav-link" href="/admin/<%= singular_name.pluralize %>"><%= I18n.t("activerecord.models.#{singular_name}") %></a>
       </li>
@@ -23,9 +24,9 @@
             <%= current_user.name %>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">設定</a>
+            <%= link_to "設定", [:admin, current_user], class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
-            <%= link_to "ログアウト", logout_path, class: "dropdown-item", method: :delete %>
+            <%= link_to "ログアウト", admin_logout_path, class: "dropdown-item", method: :delete %>
           </div>
         </li>
         <li class="nav-item active">

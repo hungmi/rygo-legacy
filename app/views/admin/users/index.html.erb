@@ -1,0 +1,42 @@
+<h1 class="h2">
+  <%= User.model_name.human %>列表
+  <%= link_to "登録", new_admin_user_path, class: "btn btn-success float-right" %>
+</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= User.human_attribute_name('name') %></th>
+      <th><%= User.human_attribute_name('role') %></th>
+      <th>更新時刻</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= I18n.t("activerecord.user_role.#{user.role}") %></td>
+        <td><%= timeago(user.updated_at) %></td>
+        <td class="text-right">
+          <div class="dropdown">
+            <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+              <i class="material-icons">&#xE5D3;</i>
+            </button>
+            <div class="dropdown-menu">
+              <%= link_to '見る', [:admin, user], class: "dropdown-item" %>
+              <%= link_to "編集する", edit_admin_user_path(user), class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to '削除', [:admin, user], method: :delete, data: { confirm: "#{user.name} 確認刪除？" }, class: "dropdown-item" %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(function() {
+    $("time.timeago").timeago();
+  });
+</script>

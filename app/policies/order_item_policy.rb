@@ -1,2 +1,0 @@
-class OrderItemPolicy < ApplicationPolicy
-end
