@@ -8,7 +8,7 @@ class Admin::ClothPolicy < AdminPolicy
   end
 
   def new?
-    update?
+    user.present?
   end
 
   def update?

@@ -6,7 +6,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% navs = policy([:admin, :user]).index? ? ["cloth", "order_item", "user"] : ["cloth", "order_item"] %>
+      <% navs = policy([:admin, :user]).index? ? ["cloth", "order_item", "user", "customer"] : ["cloth", "order_item"] %>
       <% navs.each do |singular_name| %>
       <li class='nav-item <%= 'active' if controller_name == singular_name.pluralize %>'>
         <a class="nav-link" href="/admin/<%= singular_name.pluralize %>"><%= I18n.t("activerecord.models.#{singular_name}") %></a>
@@ -14,8 +14,8 @@
       <% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="検索" name="s">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">検索</button>
+      <input class="form-control mr-sm-2" type="text" placeholder="<%= I18n.t('text.search') %>" name="s">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit"><%= I18n.t('text.search') %></button>
     </form>
     <% if user_signed_in? %>
       <ul class="navbar-nav ml-5">

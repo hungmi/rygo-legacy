@@ -3,9 +3,7 @@
   <%= link_to "登録", new_admin_cloth_path, class: "btn btn-success float-right" %>
 </h1>
 <div class="row">
-  <% @cloths.each do |cloth| %>
-    <div class="col-lg-9">
-      <%= render cloth %>
-    </div>
-  <% end %>
+  <div class="col-lg-9 row">
+    <%= render @cloths %>
+  </div>
 </div>

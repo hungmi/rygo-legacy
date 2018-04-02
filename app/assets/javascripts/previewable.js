@@ -2,7 +2,7 @@
 // <%= f.file_field :icon, class: "d-none previewable" %>
 // <%= image_tag tag.icon_or_default, style: "max-width: 100%;", class: "previewer", data: { file: "input#tag_icon" } %>
 
-var $imagePreviewer = $(`<div class="card"><img class="card-img-top" src=""></div>`)
+var $imagePreviewer = $(`<div class="card col-sm-2 col-4"><img class="card-img-top" src=""></div>`)
 
 $(document).on("click", "img.previewer", function(e) {
 	var target = this.getAttribute("data-file")

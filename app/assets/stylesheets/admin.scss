@@ -1,7 +1,6 @@
 @import "bootstrap";
 @import "bootstrap.min";
 @import "sessions";
-@import 'admin/dashboard';
 @import 'admin/cloths';
 body, html {
 	font-family: 'Noto Sans TC', sans-serif;
@@ -21,3 +20,4 @@ body, html {
 .better-spacing {
 	letter-spacing: 2px;
 }
+@import 'admin/dashboard';

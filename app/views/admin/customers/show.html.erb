@@ -1,0 +1,8 @@
+<%= link_to admin_customers_path, class: "btn btn-link" do %>
+  &#8592; <%= I18n.t('text.back') %>
+<% end %>
+<%= link_to I18n.t('text.edit'), edit_admin_customer_path(@customer), class: "btn btn-success float-right" %>
+<%= link_to I18n.t('text.destroy'), [:admin, @customer], method: :delete, data: { confirm: I18n.t('text.confirm_destroy') }, class: "btn btn-danger float-right mr-2" %>
+
+<h1 class="h2"><%= Customer.model_name.human %> #<%= @customer.id %></h1>
+<%= render @customer %>

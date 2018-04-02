@@ -1,9 +1,23 @@
-ja:
+ja:  
+  text:
+    cancel: キャンセル
+    edit: 編集
+    new: 登録
+    search: 検索
+    destroy: 削除
+    back: 戻る
+    attr_no_value: 未記入
+    confirm_destroy: 削除しますか？
+  flash:
+    create_success: 登録に成功しました。
+    update_success: 更新に成功しました。
+    destroy_success: 削除に成功しました。
   activerecord:
     models:
       cloth: 衣服
       order_item: 注文
       user: ユーザー
+      customer: 客戶
     attributes:
       cloth:
         code: 品番
@@ -27,6 +41,11 @@ ja:
         password_confirmation: パスワード（確認用）
         new_password: 新しいパスワード
         new_password_confirmation: 確認用新しいパスワード
+      customer:
+        name: 名前
+        address: 住所
+        phone: 電話番号
+        company_name: 社名
     order_item_status:
       not_yet_shipped: 未発送
       shipped: 発送しました
