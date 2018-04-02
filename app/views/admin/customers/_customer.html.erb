@@ -1,7 +1,6 @@
 <div class="col-sm-6 mb-5 pr-5 row" id="customer-<%= customer.id %>">
 	<div class="col-sm-9">
 		<div class="list-group list-group-flush">
-		  
 		  <li href="#" class="list-group-item flex-column align-items-start">
 		    <div class="d-flex w-100 justify-content-between">
 		      <h5 class="mb-1"><%= Customer.human_attribute_name("name") %></h5>
@@ -14,7 +13,6 @@
 	        <% end %>
 	      </p>
 		  </li>
-		  
 		  <li href="#" class="list-group-item flex-column align-items-start">
 		    <div class="d-flex w-100 justify-content-between">
 		      <h5 class="mb-1"><%= Customer.human_attribute_name("address") %></h5>
@@ -27,7 +25,6 @@
 	        <% end %>
 	      </p>
 		  </li>
-		  
 		  <li href="#" class="list-group-item flex-column align-items-start">
 		    <div class="d-flex w-100 justify-content-between">
 		      <h5 class="mb-1"><%= Customer.human_attribute_name("phone") %></h5>
@@ -40,7 +37,6 @@
 	        <% end %>
 	      </p>
 		  </li>
-		  
 		  <li href="#" class="list-group-item flex-column align-items-start">
 		    <div class="d-flex w-100 justify-content-between">
 		      <h5 class="mb-1"><%= Customer.human_attribute_name("company_name") %></h5>
@@ -53,7 +49,6 @@
 	        <% end %>
 	      </p>
 		  </li>
-		  
 		  <li class="list-group-item flex-column align-items-start">
 	      <%= link_to "編集", edit_admin_customer_path(customer), class: "btn btn-primary" %>
 	      <%= link_to "削除", [:admin, customer], method: :delete, data: { confirm: I18n.t("text.confirm_destroy") }, class: "btn btn-danger float-right" %>

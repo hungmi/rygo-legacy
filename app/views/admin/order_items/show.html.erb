@@ -1,4 +1,8 @@
 <%= link_to admin_order_items_path, class: "btn btn-link" do %>
   &#8592; 戻る
 <% end %>
-<%= render @order_item %>
+<div class="row">
+  <div class="col-lg-9 row">
+		<%= render @order_item %>
+	</div>
+</div>
