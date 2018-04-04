@@ -45,10 +45,12 @@ ja:
         new_password: 新しいパスワード
         new_password_confirmation: 確認用新しいパスワード
       customer:
+        code: お客様番号
         name: 名前
         address: 住所
         phone: 電話番号
         company_name: 社名
+        discount: 割引
     order_item_status:
       not_yet_shipped: 未発送
       shipped: 発送しました

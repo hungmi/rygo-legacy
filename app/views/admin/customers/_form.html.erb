@@ -9,6 +9,17 @@
   	    </div>
       <% end %>
     </div>
+
+    <div class="form-group <%= customer.errors[:code].present? ? 'has-danger' : '' %>">
+      <%= f.label :code %>
+      <%= f.text_field :code, class: "form-control #{customer.errors[:code].present? ? 'is-invalid' : ''}" %>
+      <small id="passwordHelpBlock" class="form-text text-muted">設定 <kbd><%= Customer.human_attribute_name(:code) %></kbd> 可避免廠商打單時看見 <kbd><%= Customer.human_attribute_name(:name) %></kbd>。</small>
+      <% if customer.errors[:code].present? %>
+        <div class="invalid-feedback">
+          <%= customer.errors[:code].join(", ") %>
+        </div>
+      <% end %>
+    </div>
   
     <div class="form-group <%= customer.errors[:address].present? ? 'has-danger' : '' %>">
       <%= f.label :address %>
@@ -37,6 +48,21 @@
   	    <div class="invalid-feedback">
   	      <%= customer.errors[:company_name].join(", ") %>
   	    </div>
+      <% end %>
+    </div>
+
+    <div class="form-group <%= customer.errors[:discount].present? ? 'has-danger' : '' %>">
+      <%= f.label :discount %>
+      <%= f.number_field :discount, class: "form-control #{customer.errors[:discount].present? ? 'is-invalid' : ''}", min: 0, max: 1 %>
+      <small id="passwordHelpBlock" class="form-text text-muted">請設定介於 0 ~ 1 的小數。</small>
+      <small id="passwordHelpBlock" class="form-text text-muted">
+        計算方式：<br>
+        假設 <kbd>割引 = 0.75</kbd>，<br class="d-sm-none">則 <kbd>最終售價 = 小売価格 x ( 1 - 0.75 )</kbd>
+      </small>
+      <% if customer.errors[:discount].present? %>
+        <div class="invalid-feedback">
+          <%= customer.errors[:discount].join(", ") %>
+        </div>
       <% end %>
     </div>
   
