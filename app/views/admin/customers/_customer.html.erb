@@ -50,8 +50,8 @@
 	      </p>
 		  </li>
 		  <li class="list-group-item flex-column align-items-start">
-	      <%= link_to "編集", edit_admin_customer_path(customer), class: "btn btn-primary" %>
-	      <%= link_to "削除", [:admin, customer], method: :delete, data: { confirm: I18n.t("text.confirm_destroy") }, class: "btn btn-danger float-right" %>
+	      <%= link_to I18n.t('text.edit') + "する", edit_admin_customer_path(customer), class: "btn btn-primary" %>
+	      <%= link_to I18n.t('text.destroy'), [:admin, customer], method: :delete, data: { confirm: I18n.t("text.confirm_destroy") }, class: "btn btn-danger float-right" %>
 	    </li>
 		</div>
 	</div>

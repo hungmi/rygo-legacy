@@ -7,11 +7,12 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1"><%= Cloth.human_attribute_name("code") %></h5>
       </div>
-      <p class="mb-1 better-spacing">
+      <p class="mb-1">
         <% if cloth.code.present? %>
-          <%= cloth.code %>
+          <span class="better-spacing"><%= cloth.code %></span>
         <% else %>
-          <span class="text-muted">未記入</span>
+          <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
+          <span class="badge badge-pill badge-warning"><%= I18n.t("text.hint") %></span>
         <% end %>
       </p>
     </li>
@@ -20,11 +21,12 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1"><%= Cloth.human_attribute_name("jancode") %></h5>
       </div>
-      <p class="mb-1 better-spacing">
+      <p class="mb-1">
         <% if cloth.jancode.present? %>
-          <%= cloth.jancode %>
+          <span class="better-spacing"><%= cloth.jancode %></span>
         <% else %>
-          <span class="text-muted">未記入</span>
+          <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
+          <span class="badge badge-pill badge-warning"><%= I18n.t("text.hint") %></span>
         <% end %>
       </p>
     </li>
@@ -37,7 +39,8 @@
         <% if cloth.brand.present? %>
           <%= cloth.brand %>
         <% else %>
-          <span class="text-muted">未記入</span>
+          <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
+          <span class="badge badge-pill badge-warning"><%= I18n.t("text.hint") %></span>
         <% end %>
       </p>
     </li>
@@ -50,7 +53,8 @@
         <% if cloth.supplier.present? %>
           <%= cloth.supplier.name %>
         <% else %>
-          <span class="text-muted">未記入</span>
+          <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
+          <span class="badge badge-pill badge-warning"><%= I18n.t("text.hint") %></span>
         <% end %>
       </p>
     </li>
@@ -63,7 +67,8 @@
         <% if cloth.price.present? %>
           <%= cloth.price %>
         <% else %>
-          <span class="text-muted">未記入</span>
+          <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
+          <span class="badge badge-pill badge-warning"><%= I18n.t("text.hint") %></span>
         <% end %>
       </p>
     </li>
@@ -76,9 +81,9 @@
     </li>
 
     <li class="list-group-item flex-column align-items-start">
-      <%= link_to "編集する", edit_admin_cloth_path(cloth), class: "btn btn-primary" %>
+      <%= link_to I18n.t('text.edit') + "する", edit_admin_cloth_path(cloth), class: "btn btn-primary" %>
       <%= link_to "新しい注文", new_admin_order_item_path(cloth_id: cloth.id), class: "btn btn-link" %>
-      <%= link_to '削除', [:admin, cloth], method: :delete, data: { confirm: "#{cloth.code}を削除しますか？" }, class: "btn btn-danger float-right" %>
+      <%= link_to I18n.t('text.destroy'), [:admin, cloth], method: :delete, data: { confirm: "#{cloth.code}を削除しますか？" }, class: "btn btn-danger float-right" %>
     </li>
   </div>
 </div>

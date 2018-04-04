@@ -1,2 +1,2 @@
-<h1 class="h2">編集<%= OrderItem.model_name.human %></h1>
+<h1 class="h2"><%= I18n.t("text.edit") %><%= OrderItem.model_name.human %></h1>
 <%= render "admin/order_items/form", order_item: @order_item %>

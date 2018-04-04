@@ -1,11 +1,14 @@
 ja:  
   text:
+    index: ""
     cancel: キャンセル
+    show: 見る
     edit: 編集
     new: 登録
     search: 検索
     destroy: 削除
     back: 戻る
+    hint: ヒント
     attr_no_value: 未記入
     confirm_destroy: 削除しますか？
   flash:
