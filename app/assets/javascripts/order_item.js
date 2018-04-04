@@ -10,7 +10,8 @@ $(document).on("change", "#order_item_cloth_id", function() {
 })
 
 $(document).on("change", "#order_item_deliver_month", function() {
-	if (this.value.length > 0 && this.value === "0") {
+	console.log(this.value.length)
+	if (this.value.length === 0) {
 		document.querySelector("#order_item_deliver_period").classList.add("d-none")
 	} else {
 		document.querySelector("#order_item_deliver_period").classList.remove("d-none")
