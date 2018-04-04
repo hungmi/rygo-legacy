@@ -6,7 +6,8 @@ class Admin::OrderItemPolicy < AdminPolicy
   def create?
     if user.present?
     	if record.cloth_id.present?
-    		user.id == record.cloth.supplier_id
+        # 該場身自己或是管理員才能新增該衣服的訂單
+    		user.id == record.cloth.supplier_id || user.admin?
     	else
     		record.cloth_id.nil?
     	end

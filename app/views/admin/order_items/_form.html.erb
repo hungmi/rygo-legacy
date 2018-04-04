@@ -11,7 +11,7 @@
     <div class="col-md-6">
       <div class="form-group <%= order_item.errors[:cloth].present? ? 'has-danger' : '' %>">
         <%= f.label :cloth_id %>
-        <%= f.collection_select :cloth_id, current_user.admin? ? Cloth.all : current_user.cloths, :id, :code, { prompt: true, selected: ordered_cloth_id }, class: "form-control #{order_item.errors[:cloth].present? ? 'is-invalid' : ''}" %>
+        <%= f.collection_select :cloth_id, current_user.admin? ? Cloth.all : current_user.cloths, :id, :code, { prompt: true, selected: ordered_cloth_id }, class: "form-control #{order_item.errors[:cloth].present? ? 'is-invalid' : ''}", required: true %>
         <% if order_item.errors[:cloth].present? %>
     	    <div class="invalid-feedback">
     	      <%= order_item.errors[:cloth].join(", ") %>
@@ -20,7 +20,7 @@
       </div>
       <div class="form-group <%= order_item.errors[:customer].present? ? 'has-danger' : '' %>">
         <%= f.label :customer_id %>
-        <%= f.collection_select :customer_id, Customer.all, :id, :name_or_code, { prompt: true }, class: "form-control #{order_item.errors[:customer].present? ? 'is-invalid' : ''}" %>
+        <%= f.collection_select :customer_id, Customer.all, :id, :name_or_code, { prompt: true }, class: "form-control #{order_item.errors[:customer].present? ? 'is-invalid' : ''}", required: true %>
         <% if order_item.errors[:customer].present? %>
           <div class="invalid-feedback">
             <%= order_item.errors[:customer].join(", ") %>
@@ -29,7 +29,7 @@
       </div>
       <div class="form-group <%= order_item.errors[:amount].present? ? 'has-danger' : '' %>">
         <%= f.label :amount %>
-        <%= f.text_field :amount, class: "form-control #{order_item.errors[:amount].present? ? 'is-invalid' : ''}" %>
+        <%= f.number_field :amount, class: "form-control #{order_item.errors[:amount].present? ? 'is-invalid' : ''}", min: 1, required: true %>
         <% if order_item.errors[:amount].present? %>
     	    <div class="invalid-feedback">
     	      <%= order_item.errors[:amount].join(", ") %>
