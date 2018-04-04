@@ -9,7 +9,7 @@ class Admin::ClothsController < AdminController
       Cloth.all
     elsif current_user.supplier?
       current_user.cloths
-    end.order(updated_at: :desc)
+    end.with_attached_images.order(updated_at: :desc)
   end
 
   # GET /cloths/1
@@ -28,10 +28,11 @@ class Admin::ClothsController < AdminController
 
   # POST /cloths
   def create
-    @cloth = Cloth.new(cloth_params)
+    @cloth = Cloth.new(cloth_params.except(:images))
     authorize [:admin, @cloth]
 
     if @cloth.save
+      @cloth.images.attach(params[:cloth][:images]) if params[:cloth][:images]
       flash[:success] = "登録に成功しました。"
       redirect_to [:admin, @cloth]
     else
@@ -41,9 +42,10 @@ class Admin::ClothsController < AdminController
 
   # PATCH/PUT /cloths/1
   def update
-    if @cloth.update(cloth_params)
+    if @cloth.update(cloth_params.except(:images))
       # byebug #cloth_params[:remove_images]
-      @cloth.images.where(id: params[:cloth][:remove_images].keys).destroy_all if params[:cloth][:remove_images].present?
+      @cloth.images.where(id: params[:cloth][:remove_images].keys).map(&:purge_later) if params[:cloth][:remove_images].present?
+      @cloth.images.attach(params[:cloth][:images]) if params[:cloth][:images]
       flash[:success] = "更新に成功しました。"
       redirect_to [:admin, @cloth]
     else
