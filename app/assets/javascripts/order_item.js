@@ -8,3 +8,11 @@ $(document).on("change", "#order_item_cloth_id", function() {
 		$("#orderItemImgCarousel").html('<img class="w-100" src="https://dummyimage.com/600x400/000000/fff&amp;text=衣服品番を選択してください">')
 	}
 })
+
+$(document).on("change", "#order_item_deliver_month", function() {
+	if (this.value.length > 0 && this.value === "0") {
+		document.querySelector("#order_item_deliver_period").classList.add("d-none")
+	} else {
+		document.querySelector("#order_item_deliver_period").classList.remove("d-none")
+	}
+})

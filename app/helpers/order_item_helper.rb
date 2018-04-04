@@ -8,4 +8,8 @@ module OrderItemHelper
 			"down"
 		end
 	end
+
+	def render_deliver_period_selected(order_item)
+		order_item.persisted? ? order_item.deliver_period : which_deliver_period(Date.today.strftime("%d"))
+	end
 end
