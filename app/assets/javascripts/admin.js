@@ -24,5 +24,5 @@ $(document).on("turbolinks:load", function() {
   // if (input !== null) {
 		// new Awesomplete(input, { minChars: 1 });
   // }
-  $("#q_cloth_id_eq").select2();
+  $(".select2").select2();
 })

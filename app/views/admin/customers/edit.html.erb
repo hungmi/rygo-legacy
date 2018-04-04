@@ -1,2 +1,5 @@
+<%= link_to admin_customers_path(anchor: "customer-#{@customer.id}"), class: "btn btn-link" do %>
+  &#8592; <%= I18n.t('text.back') %>
+<% end %>
 <h1 class="h2"><%= I18n.t('text.edit') %><%= Customer.model_name.human %></h1>
 <%= render "admin/customers/form", customer: @customer %>

@@ -11,7 +11,7 @@
     <div class="col-md-6">
       <div class="form-group <%= order_item.errors[:cloth].present? ? 'has-danger' : '' %>">
         <%= f.label :cloth_id %>
-        <%= f.collection_select :cloth_id, scoped_cloths, :id, :code, { prompt: true, selected: ordered_cloth_id }, class: "form-control #{order_item.errors[:cloth].present? ? 'is-invalid' : ''}", required: true %>
+        <%= f.collection_select :cloth_id, scoped_cloths, :id, :code, { prompt: true, selected: ordered_cloth_id }, class: "form-control select2 #{order_item.errors[:cloth].present? ? 'is-invalid' : ''}", required: true %>
         <% if order_item.errors[:cloth].present? %>
     	    <div class="invalid-feedback">
     	      <%= order_item.errors[:cloth].join(", ") %>

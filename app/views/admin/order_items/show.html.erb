@@ -1,5 +1,5 @@
-<%= link_to admin_order_items_path, class: "btn btn-link" do %>
-  &#8592; <%= I18n.t("text.back") %>
+<%= link_to admin_order_items_path(anchor: "order_item-#{@order_item.id}"), class: "btn btn-link" do %>
+  &#8592; <%= I18n.t('text.back') %>
 <% end %>
 <div class="row">
   <div class="col-lg-9">

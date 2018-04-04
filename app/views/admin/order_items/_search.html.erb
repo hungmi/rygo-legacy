@@ -11,7 +11,7 @@
 			    <% end %>
 			    <div class="form-group col-12">
 			      <%= f.label :cloth_id_eq, OrderItem.human_attribute_name(:cloth_id) %><br>
-			      <%= f.grouped_collection_select :cloth_id_eq, User.supplier, :cloths, :name, :id, :code , { include_blank: "全部" }, class: "form-control", style: "width: 100%;" %>
+			      <%= f.grouped_collection_select :cloth_id_eq, User.supplier, :cloths, :name, :id, :code , { include_blank: "全部" }, class: "form-control select2", style: "width: 100%;" %>
 			    </div>
 			    <div class="form-group col-12">
 			      <%= f.label :customer_id_eq, OrderItem.human_attribute_name(:customer_id) %>

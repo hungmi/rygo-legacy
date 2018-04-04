@@ -1,2 +1,5 @@
+<%= link_to admin_order_items_path(anchor: "order_item-#{@order_item.id}"), class: "btn btn-link" do %>
+  &#8592; <%= I18n.t('text.back') %>
+<% end %>
 <h1 class="h2"><%= I18n.t("text.edit") %><%= OrderItem.model_name.human %></h1>
 <%= render "admin/order_items/form", order_item: @order_item %>
