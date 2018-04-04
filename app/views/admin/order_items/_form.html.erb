@@ -1,11 +1,11 @@
 <%= form_with model: [:admin, order_item], local: true, class: "mb-5" do |f| %>
   <% ordered_cloth_id = f.object.cloth_id ? f.object.cloth_id : params[:cloth_id] %>
   <div class="row">
-    <div class="col-md-6" id="orderItemImgCarousel">
+    <div class="col-md-6" id="orderItemImgCarousel" data-img-placeholder="<%= asset_path('cloth_choose_tip.svg') %>">
       <% if ordered_cloth_id.present? && (cloth = Cloth.find(ordered_cloth_id)).present? %>
         <%= render "admin/cloths/cloth_img_carousel", cloth: cloth %>
       <% else %>
-        <%= image_tag "https://dummyimage.com/600x400/000000/fff&text=衣服品番を選択してください", class: "w-100" %>
+        <%= image_tag "cloth_choose_tip", class: "w-100" %>
       <% end %>
     </div>
     <div class="col-md-6">

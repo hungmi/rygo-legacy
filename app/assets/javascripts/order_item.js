@@ -5,7 +5,8 @@ $(document).on("change", "#order_item_cloth_id", function() {
 			dataType: 'script'
 		})	
 	} else {
-		$("#orderItemImgCarousel").html('<img class="w-100" src="https://dummyimage.com/600x400/000000/fff&amp;text=衣服品番を選択してください">')
+		var imgPlaceholder = $("#orderItemImgCarousel").attr("data-img-placeholder")
+		$("#orderItemImgCarousel").html(`<img class="w-100" src="${imgPlaceholder}">`)
 	}
 })
 

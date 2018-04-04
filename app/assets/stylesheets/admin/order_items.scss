@@ -1,0 +1,8 @@
+#orderItemIndex {
+	@media (max-width: 768px) {
+		-webkit-box-orient: vertical !important;
+    -webkit-box-direction: reverse !important;
+    -ms-flex-direction: column-reverse !important;
+    flex-direction: column-reverse !important;
+	}
+}

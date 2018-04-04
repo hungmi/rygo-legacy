@@ -3,7 +3,7 @@
   <%= link_to I18n.t("text.new"), new_admin_order_item_path, class: "btn btn-success float-right" %>
   <%= link_to I18n.t("text.filter"), "#orderItemAdvanceSearch", class: "btn btn-outline-secondary float-right mr-3", data: { toggle: "collapse" } %>
 </h1>
-<div class="row">
+<div class="row" id="orderItemIndex">
   <div class="col-lg-9">
   	<div class="row">
 			<%= render @order_items %>
