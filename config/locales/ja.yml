@@ -20,7 +20,7 @@ ja:
       cloth: 衣服
       order_item: 注文
       user: ユーザー
-      customer: 客戶
+      customer: お客様
     attributes:
       cloth:
         code: 品番
@@ -31,6 +31,7 @@ ja:
         images: 写真
       order_item:
         cloth_id: 衣服品番
+        customer_id: お客様
         amount: 数量
         deliver_month: 発送日
         deliver_period: 発送日

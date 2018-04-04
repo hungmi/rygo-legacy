@@ -1,5 +1,6 @@
 class OrderItem < ApplicationRecord
 	belongs_to :cloth
+	belongs_to :customer
 	enum status: { not_yet_shipped: 0, shipped: 1, delivered: 2 }
 	enum deliver_period: { up: 0, middle: 1, down: 2 }
 	validates :amount, presence: true

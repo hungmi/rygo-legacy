@@ -71,6 +71,6 @@ class Admin::OrderItemsController < AdminController
 
     # Only allow a trusted parameter "white list" through.
     def order_item_params
-      params.require(:order_item).permit(:cloth_id, :amount, :deliver_month, :deliver_period, :status)
+      params.require(:order_item).permit(:cloth_id, :customer_id, :amount, :deliver_month, :deliver_period, :status)
     end
 end

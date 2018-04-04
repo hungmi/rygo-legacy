@@ -18,6 +18,15 @@
     	    </div>
         <% end %>
       </div>
+      <div class="form-group <%= order_item.errors[:customer].present? ? 'has-danger' : '' %>">
+        <%= f.label :customer_id %>
+        <%= f.collection_select :customer_id, Customer.all, :id, :name_or_code, { prompt: true }, class: "form-control #{order_item.errors[:customer].present? ? 'is-invalid' : ''}" %>
+        <% if order_item.errors[:customer].present? %>
+          <div class="invalid-feedback">
+            <%= order_item.errors[:customer].join(", ") %>
+          </div>
+        <% end %>
+      </div>
       <div class="form-group <%= order_item.errors[:amount].present? ? 'has-danger' : '' %>">
         <%= f.label :amount %>
         <%= f.text_field :amount, class: "form-control #{order_item.errors[:amount].present? ? 'is-invalid' : ''}" %>

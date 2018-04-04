@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2018_04_01_115311) do
 
   create_table "order_items", force: :cascade do |t|
     t.bigint "cloth_id"
+    t.bigint "customer_id"
     t.integer "amount", null: false
     t.integer "deliver_month"
     t.integer "deliver_period", default: 0
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(version: 2018_04_01_115311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cloth_id"], name: "index_order_items_on_cloth_id"
+    t.index ["customer_id"], name: "index_order_items_on_customer_id"
   end
 
   create_table "users", force: :cascade do |t|
