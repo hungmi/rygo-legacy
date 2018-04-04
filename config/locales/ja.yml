@@ -11,6 +11,10 @@ ja:
     hint: ヒント
     attr_no_value: 未記入
     confirm_destroy: 削除しますか？
+    search_result: 検索結果
+    filter: フィルター
+    apply: 適用
+    clear: クリア
   flash:
     create_success: 登録に成功しました。
     update_success: 更新に成功しました。

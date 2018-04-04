@@ -4,11 +4,11 @@ class Admin::OrderItemsController < AdminController
   # GET /order_items
   def index
     authorize [:admin, :order_item], :index?
-    
+    @q = OrderItem.ransack(params[:q])
     @order_items =  if current_user.admin?
-                      OrderItem.all
+                      @q.result(distinct: true)
                     elsif current_user.supplier?
-                      current_user.order_items
+                      @q.result(distinct: true).where(cloth_id: current_user.cloth_ids)
                     end.order(updated_at: :desc)
   end
 

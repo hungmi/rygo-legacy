@@ -12,4 +12,8 @@ module OrderItemHelper
 	def render_deliver_period_selected(order_item)
 		order_item.persisted? ? order_item.deliver_period : which_deliver_period(Date.today.strftime("%d"))
 	end
+
+	def scoped_cloths
+		current_user.admin? ? Cloth.all : current_user.cloths
+	end
 end

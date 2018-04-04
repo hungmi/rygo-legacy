@@ -21,3 +21,13 @@ body, html {
 	letter-spacing: 2px;
 }
 @import 'admin/dashboard';
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+	height: calc(2.25rem) !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+	line-height: calc(2.25rem + 2px) !important;
+}
+.select2-container .select2-selection--single {
+	border: 1px solid #ced4da !important;
+	height: calc(2.25rem + 2px) !important;
+}

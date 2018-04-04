@@ -17,3 +17,12 @@ $(document).on("change", "#order_item_deliver_month", function() {
 		document.querySelector("#order_item_deliver_period").classList.remove("d-none")
 	}
 })
+
+$(document).on("change", "#q_deliver_month_eq", function() {
+	console.log(this.value.length)
+	if (this.value.length === 0) {
+		document.querySelector("#q_deliver_period_eq").classList.add("d-none")
+	} else {
+		document.querySelector("#q_deliver_period_eq").classList.remove("d-none")
+	}
+})

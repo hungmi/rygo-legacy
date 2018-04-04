@@ -1,0 +1,40 @@
+
+	<div class="collapse <%= 'show' if params[:q].present? %>" id="orderItemAdvanceSearch">
+	  <div class="card card-body">
+	    <%= search_form_for [:admin, @q] do |f| %>
+	    	<div class="form-row">
+	    		<% if current_user.admin? %>
+				    <div class="form-group col-12">
+				      <%= f.label :cloth_supplier_id_eq, Cloth.human_attribute_name(:supplier_id) %>
+				      <%= f.collection_select :cloth_supplier_id_eq, User.supplier, :id, :name, { include_blank: "全部" }, class: "form-control" %>
+				    </div>
+			    <% end %>
+			    <div class="form-group col-12">
+			      <%= f.label :cloth_id_eq, OrderItem.human_attribute_name(:cloth_id) %><br>
+			      <%= f.grouped_collection_select :cloth_id_eq, User.supplier, :cloths, :name, :id, :code , { include_blank: "全部" }, class: "form-control", style: "width: 100%;" %>
+			    </div>
+			    <div class="form-group col-12">
+			      <%= f.label :customer_id_eq, OrderItem.human_attribute_name(:customer_id) %>
+			      <%= f.collection_select :customer_id_eq, Customer.all, :id, :name_or_code, { include_blank: "全部" }, class: "form-control" %>
+			    </div>
+			    <div class="form-group col-12">
+			      <%= f.label :status_eq, OrderItem.human_attribute_name(:status) %>
+			      <%= f.select :status_eq, OrderItem.statuses.collect { |k,v| [I18n.t("activerecord.order_item_status.#{k}"), v] }, {  include_blank: "全部" }, class: "form-control" %>
+			    </div>
+			    <div class="form-group col-12">
+			      <%= f.label :deliver_month_eq, OrderItem.human_attribute_name(:deliver_month) %>
+			      <%= f.select :deliver_month_eq, (1..12).collect { |m| ["#{m}月",m] }, { include_blank: "未定" }, class: "form-control" %>
+			    </div>
+			    <div class="form-group col-12">
+			      <%= f.label :deliver_period_eq, class: "d-none" %>
+			      <%= f.select :deliver_period_eq, OrderItem.deliver_periods.collect { |k,v| [I18n.t("activerecord.order_item_deliver_period.#{k}"), v] }, {  include_blank: "全部" }, class: "form-control #{'d-none' unless params[:q].try(:[], :deliver_month_eq).present?}" %>
+			    </div>
+			  </div>
+			  <%= link_to I18n.t("text.clear"), admin_order_items_path, class: "btn btn-link text-danger btn-sm" %>
+			  <%= f.submit I18n.t("text.apply"), class: "btn btn-secondary float-right btn-sm" %>
+			<% end %>
+	  </div>
+	</div>
+<div class="mt-2 <%= 'd-none' unless params[:q].present? %>">
+	<%= I18n.t("text.search_result") %>：<%= @order_items.size %>
+</div>

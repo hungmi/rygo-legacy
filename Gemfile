@@ -67,3 +67,4 @@ gem 'awesome_rails_console'
 gem 'pundit'
 gem 'sidekiq'
 gem "browser"
+gem 'ransack', github: 'activerecord-hackery/ransack'
