@@ -1,7 +1,7 @@
-<div class="col-sm-6 mb-5" id="order_item-<%= order_item.id %>">
+<div class="col-sm-6 col-12 mb-5" id="order_item-<%= order_item.id %>">
   <%= render "admin/cloths/cloth_img_carousel", cloth: order_item.cloth %>
 </div>
-<div class="col-sm-6 mb-5 pr-5">
+<div class="col-sm-6 col-12 mb-5 pr-5">
   <div class="list-group list-group-flush">
     <li class="list-group-item flex-column align-items-start">
       <div class="d-flex w-100 justify-content-between">
@@ -25,7 +25,7 @@
       </p>
     </li>
 
-    <li class="list-group-item flex-column align-items-start">
+    <li class="list-group-item flex-column align-items-start <%= 'd-print-none' if params[:q].try(:[], :customer_id_eq).present? %>">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1"><%= OrderItem.human_attribute_name("customer_id") %></h5>
       </div>
@@ -84,14 +84,14 @@
       <p class="mb-1"><%= I18n.t "activerecord.order_item_status.#{order_item.status}" %></p>
     </li>
 
-    <li class="list-group-item flex-column align-items-start">
+    <li class="list-group-item flex-column align-items-start d-print-none">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">更新時刻</h5>
       </div>
       <p class="mb-1"><%= timeago(order_item.updated_at) %></p>
     </li>
 
-    <li class="list-group-item flex-column align-items-start">
+    <li class="list-group-item flex-column align-items-start d-print-none">
       <%= link_to "編集する", edit_admin_order_item_path(order_item), class: "btn btn-primary" %>
       <%= link_to '削除', [:admin, order_item], method: :delete, data: { confirm: "#{order_item.cloth.code} の注文 ##{order_item.code} を削除しますか？" }, class: "btn btn-danger float-right" %>
     </li>

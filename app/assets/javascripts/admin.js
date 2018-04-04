@@ -20,9 +20,9 @@ $(document).on("change", "[name*='remove_images']", function() {
 $(document).on("turbolinks:load", function() {
   flatpickr("#order_item_deliver_date", { "locale": "ja" });
   $("time.timeago").timeago();
-  // var input = document.getElementById("q_cloth_id_cont");
-  // if (input !== null) {
-		// new Awesomplete(input, { minChars: 1 });
-  // }
   $(".select2").select2();
 })
+
+$(document).on("click", "#btnPrint", function () {
+	window.print();
+});

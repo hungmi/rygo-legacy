@@ -1,15 +1,25 @@
-<h1 class="h2">
+<h1 class="h2 d-print-none">
   <%= OrderItem.model_name.human %>履歴
-  <%= link_to I18n.t("text.new"), new_admin_order_item_path, class: "btn btn-success float-right" %>
-  <%= link_to I18n.t("text.filter"), "#orderItemAdvanceSearch", class: "btn btn-outline-secondary float-right mr-3", data: { toggle: "collapse" } %>
+  <%= link_to I18n.t("text.new"), new_admin_order_item_path, class: "d-print-none btn btn-success float-right" %>
+  <%= link_to I18n.t("text.filter"), "#orderItemAdvanceSearch", class: "d-print-none btn btn-outline-secondary float-right mr-3", data: { toggle: "collapse" } %>
+  <%= button_tag "打印此頁", id: "btnPrint", class: "d-print-none btn btn-outline-info float-right mr-3" %>
 </h1>
+<div class="d-none d-print-block">
+	<h1 class="text-center">
+		<span class="h4" style="position: absolute; left: 0; top: 10px;">龍運有限会社 <%= Date.today.strftime("%F") %></span>
+		ご<%= OrderItem.model_name.human %>履歴
+		<% if params[:q].try(:[], :customer_id_eq).present? %>
+			<span class="h4" style="position: absolute; right: 0; top: 10px;"><%= Customer.model_name.human %>：1234</span>
+		<% end %>
+	</h1>
+</div>
 <div class="row" id="orderItemIndex">
   <div class="col-lg-9">
   	<div class="row">
 			<%= render @order_items %>
 		</div>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-lg-3 d-print-none">
 		<%= render "search" %>
 	</div>
 </div>
