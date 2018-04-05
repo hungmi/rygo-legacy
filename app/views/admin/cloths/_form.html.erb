@@ -32,7 +32,7 @@
   <div class="offset-sm-3 col-sm-6">
     <div class="form-group <%= cloth.errors[:code].present? ? 'has-danger' : '' %>">
       <%= f.label :code %>
-      <%= f.text_field :code, class: "form-control #{cloth.errors[:code].present? ? 'is-invalid' : ''}" %>
+      <%= f.text_field :code, class: "form-control #{cloth.errors[:code].present? ? 'is-invalid' : ''}", required: true %>
       <% if cloth.errors[:code].present? %>
   	    <div class="invalid-feedback">
   	      <%= cloth.errors[:code].join(", ") %>
@@ -60,7 +60,7 @@
     <% if current_user.admin? %>
       <div class="form-group <%= cloth.errors[:supplier].present? ? 'has-danger' : '' %>">
         <%= f.label :supplier_id %>
-        <%= f.select :supplier_id, User.supplier.all.pluck(:name, :id), { prompt: true }, class: "form-control #{cloth.errors[:supplier].present? ? 'is-invalid' : ''}" %>
+        <%= f.select :supplier_id, User.supplier.all.pluck(:name, :id), { prompt: true }, class: "form-control #{cloth.errors[:supplier].present? ? 'is-invalid' : ''}", required: true %>
         <% if cloth.errors[:supplier].present? %>
           <div class="invalid-feedback">
             <%= cloth.errors[:supplier].join(", ") %>
