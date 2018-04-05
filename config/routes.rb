@@ -4,7 +4,12 @@ Rails.application.routes.draw do
 	get "admin", to: redirect("/admin/cloths")	
 	namespace :admin do
 		resources :customers
-  	resources :order_items
+  	resources :order_items do
+      member do
+        post "ship"
+        post "deliver"
+      end
+    end
 		resources :cloths
   	resources :users
     get 'login', to: 'sessions#new'

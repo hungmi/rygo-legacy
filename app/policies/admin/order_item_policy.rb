@@ -29,4 +29,12 @@ class Admin::OrderItemPolicy < AdminPolicy
   def destroy?
     update?
   end
+
+  def ship?
+    update?
+  end
+
+  def deliver?
+    update?
+  end
 end

@@ -1,0 +1,3 @@
+$("#order_item-<%= @order_item.id %> .order_item_status").addClass("text-primary")
+$("#order_item-<%= @order_item.id %> .order_item_status").text("<%= I18n.t('activerecord.order_item_status.shipped') %>")
+$("#order_item-<%= @order_item.id %> .ship-link").remove()

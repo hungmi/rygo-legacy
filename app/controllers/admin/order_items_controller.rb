@@ -1,5 +1,5 @@
 class Admin::OrderItemsController < AdminController
-  before_action :set_order_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_order_item, only: [:show, :edit, :update, :destroy, :ship, :deliver]
 
   # GET /order_items
   def index
@@ -59,6 +59,14 @@ class Admin::OrderItemsController < AdminController
     @order_item.destroy
     flash[:success] = "削除に成功しました。"
     redirect_to admin_order_items_url
+  end
+
+  def ship
+   @order_item.shipped! unless @order_item.shipped?
+  end
+
+  def deliver
+   @order_item.delivered! unless @order_item.delivered?
   end
 
   private

@@ -1,14 +1,14 @@
-<div class="col-sm-6 col-12 mb-5" id="order_item-<%= order_item.id %>">
+<div class="col-sm-6 col-12 mb-5">
   <%= render "admin/cloths/cloth_img_carousel", cloth: order_item.cloth %>
 </div>
-<div class="col-sm-6 col-12 mb-5 pr-5">
+<div class="col-sm-6 col-12 mb-5 pr-5" id="order_item-<%= order_item.id %>">
   <div class="list-group list-group-flush">
     <li class="list-group-item flex-column align-items-start">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1"><%= OrderItem.model_name.human %></h5>
       </div>
       <p class="mb-1 better-spacing">
-        #<%= order_item.created_at.strftime("%y%m%d%H%M%S") %>
+        #<%= order_item.code %>
       </p>
     </li>
 
@@ -81,7 +81,7 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1"><%= OrderItem.human_attribute_name("status") %></h5>
       </div>
-      <p class="mb-1"><%= I18n.t "activerecord.order_item_status.#{order_item.status}" %></p>
+      <p class="mb-1 order_item_status"><%= I18n.t "activerecord.order_item_status.#{order_item.status}" %></p>
     </li>
 
     <li class="list-group-item flex-column align-items-start d-print-none">
@@ -93,6 +93,11 @@
 
     <li class="list-group-item flex-column align-items-start d-print-none">
       <%= link_to "編集する", edit_admin_order_item_path(order_item), class: "btn btn-primary" %>
+      <% if order_item.not_yet_shipped? %>
+        <%= link_to I18n.t("activerecord.order_item_status.shipped"), ship_admin_order_item_path(order_item), class: "btn btn-link ship-link", method: :post, remote: true, data: { confirm: "#{Cloth.model_name.human} ##{order_item.code} を#{I18n.t('activerecord.order_item_status.shipped')}？" } %>
+      <% elsif order_item.shipped? %>
+        <%= link_to I18n.t("activerecord.order_item_status.delivered"), deliver_admin_order_item_path(order_item), class: "btn btn-link deliver-link", method: :post, remote: true, data: { confirm: "#{Cloth.model_name.human} ##{order_item.code} を#{I18n.t('activerecord.order_item_status.delivered')}？" } %>
+      <% end %>
       <%= link_to '削除', [:admin, order_item], method: :delete, data: { confirm: "#{order_item.cloth.code} の注文 ##{order_item.code} を削除しますか？" }, class: "btn btn-danger float-right" %>
     </li>
   </div>
