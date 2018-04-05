@@ -20,9 +20,9 @@ namespace :dev do
     puts "#{now}開始備份完整資料庫..."
     if Rails.env.production?
       @file_name = "longyun_pro_#{now}.dump"
-      @local_dir = "/home/deploy/railsapp/db_backups"
+      @local_dir = "/home/deploy/apps/db_backups"
       # 記得要去 /home/deploy 創一個 .pgpass 然後 sudo chmod 600 /home/deploy/.pgpass
-      `PGPASSFILE=~/.pgpass pg_dump -Fc --no-acl --no-owner -h localhost -U railsapp railsapp_production > "#{@local_dir}/#{@file_name}"`
+      `PGPASSFILE=~/.pgpass pg_dump -Fc --no-acl --no-owner -h localhost -U deploy railsapp_production > "#{@local_dir}/#{@file_name}"`
       puts "開始上傳..."
       @fog = UploadService.fog
       @dir = @fog.directories.get("longyun-db-backups")
