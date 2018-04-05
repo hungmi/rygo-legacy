@@ -5,7 +5,7 @@
       <% if ordered_cloth_id.present? && (cloth = Cloth.find(ordered_cloth_id)).present? %>
         <%= render "admin/cloths/cloth_img_carousel", cloth: cloth %>
       <% else %>
-        <%= image_tag "cloth_choose_tip", class: "w-100" %>
+        <%= image_tag "cloth_choose_tip.svg", class: "w-100" %>
       <% end %>
     </div>
     <div class="col-md-6">
