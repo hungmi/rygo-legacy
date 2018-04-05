@@ -2,7 +2,7 @@
 lock "~> 3.10.1"
 
 set :application, "rygo"
-set :repo_url, "git@github.com:s941118/rygo.git"
+set :repo_url, "git@github.com:hungmi/rygo.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
