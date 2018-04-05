@@ -16,7 +16,7 @@
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/ja.js"></script>
   </head>
-  <body class='admin <%= "#{controller_name}-controller" %> <%= "#{action_name}-action" %>'>
+  <body style="-webkit-print-color-adjust:exact;" class='admin <%= "#{controller_name}-controller" %> <%= "#{action_name}-action" %>'>
     <%= render "admin/common/nav_top" if user_signed_in? && controller_name != "sessions" %>
     <div class="container">
       <%= notice_message(dismissible: true, fixed: true) unless controller_name == "sessions" %>

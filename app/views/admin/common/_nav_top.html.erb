@@ -9,16 +9,20 @@
       <% navs = policy([:admin, :user]).index? ? ["cloth", "order_item", "user", "customer"] : ["cloth", "order_item"] %>
       <% navs.each do |singular_name| %>
       <li class='nav-item <%= 'active' if controller_name == singular_name.pluralize %>'>
-        <a class="nav-link" href="/admin/<%= singular_name.pluralize %>"><%= I18n.t("activerecord.models.#{singular_name}") %></a>
+        <a class="nav-link py-sm-2 py-3" href="/admin/<%= singular_name.pluralize %>"><%= I18n.t("activerecord.models.#{singular_name}") %></a>
       </li>
       <% end %>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="<%= I18n.t('text.search') %>" name="s">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit"><%= I18n.t('text.search') %></button>
+    <form class="form-row align-items-center my-2 my-lg-0">
+      <div class="col-auto">
+        <input class="form-control mr-sm-2" type="text" placeholder="<%= I18n.t('text.search') %>" name="s">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><%= I18n.t('text.search') %></button>
+      </div>
     </form>
     <% if user_signed_in? %>
-      <ul class="navbar-nav ml-5">
+      <ul class="navbar-nav ml-sm-5 ml-0">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= current_user.name %>

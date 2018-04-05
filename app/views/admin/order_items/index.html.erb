@@ -2,8 +2,11 @@
   <%= OrderItem.model_name.human %>履歴
   <%= link_to I18n.t("text.new"), new_admin_order_item_path, class: "d-print-none btn btn-success float-right" %>
   <%= link_to I18n.t("text.filter"), "#orderItemAdvanceSearch", class: "d-print-none btn btn-outline-secondary float-right mr-3", data: { toggle: "collapse" } %>
-  <%= button_tag "打印此頁", id: "btnPrint", class: "d-print-none btn btn-outline-info float-right mr-3" %>
+  <% if current_user.admin? %>
+  	<%= button_tag "打印此頁", id: "btnPrint", class: "d-print-none btn btn-outline-info float-sm-right mr-sm-3 mr-0" %>
+  <% end %>
 </h1>
+<div class="clearfix"></div>
 <div class="d-none d-print-block">
 	<h1 class="text-center">
 		<span class="h4" style="position: absolute; left: 0; top: 10px;">龍運有限会社 <%= Date.today.strftime("%F") %></span>

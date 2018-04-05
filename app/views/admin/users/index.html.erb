@@ -5,7 +5,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%= User.human_attribute_name('name') %></th>
+      <th style="min-width: 110px;"><%= User.human_attribute_name('name') %></th>
       <th><%= User.human_attribute_name('role') %></th>
       <th>更新時刻</th>
       <th></th>
@@ -22,7 +22,7 @@
             <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
               <i class="material-icons">&#xE5D3;</i>
             </button>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu dropdown-menu-right">
               <%= link_to I18n.t("text.show"), [:admin, user], class: "dropdown-item" %>
               <%= link_to I18n.t("text.edit") + "する", edit_admin_user_path(user), class: "dropdown-item" %>
               <div class="dropdown-divider"></div>
