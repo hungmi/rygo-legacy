@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: <%= Rails.application.credentials.dig(:production, :db_name) %>
-  username: <%= Rails.application.credentials.dig(:production, :db_user) %>
-  password: <%= Rails.application.credentials.dig(:production, :db_password) %>
+  database: <%= Rails.application.credentials.dig(:production_db_name) %>
+  username: <%= Rails.application.credentials.dig(:production_db_user) %>
+  password: <%= Rails.application.credentials.dig(:production_db_password) %>
