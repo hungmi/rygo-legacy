@@ -1,6 +1,6 @@
 class Admin::UserPolicy < AdminPolicy
   def index?
-    user.admin?
+    user.present? && user.admin?
   end
 
   def new?
@@ -8,7 +8,7 @@ class Admin::UserPolicy < AdminPolicy
   end
 
   def create?
-    user.admin?
+    user.present? && user.admin?
   end
 
   def show?

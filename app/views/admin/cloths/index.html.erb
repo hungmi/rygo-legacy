@@ -1,11 +1,48 @@
 <h1 class="h2">
   <%= Cloth.model_name.human %>
-  <%= link_to I18n.t("text.new"), new_admin_cloth_path, class: "btn btn-success float-right" %>
 </h1>
 <div class="row">
   <div class="col-lg-9">
   	<div class="row">
     	<%= render @cloths %>
+    </div>
+  </div>
+</div>
+<div class="btn-abs-wrapper">
+	<%= link_to new_admin_cloth_path, class: "btn btn-success" do %>
+		<i class="material-icons">&#xE145;</i>
+	<% end %>
+	<%= link_to "#", class: "btn btn-secondary d-lg-none", data: { toggle: "modal", target: "#searchModal" } do %>
+		<i class="material-icons">&#xE8B6;</i>
+	<% end %>
+</div>
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<%= search_form_for [:admin, @q], class: "form-row align-items-center my-2 my-lg-0" do |f| %>
+		      <div class="col-auto">
+		        <div class="input-group">
+		          <%= f.search_field @nav_search_symbol, class: "form-control border-right-0", placeholder: I18n.t('text.search_placeholder'), onkeydown: "$(this).parents('.input-group').find('#remove-input-icon').removeClass('invisible')" %>
+		          <% if params[:q].present? %>
+		            <div class="input-group-append">
+		              <span class="input-group-text border-left-0 bg-white">
+		                <span id="remove-input-icon" onclick="$(this).parents('.input-group').find('input').val('');$(this).addClass('invisible')" aria-hidden="true">&times;</span>
+		              </span>
+		            </div>
+		          <% end %>
+		        </div>
+		      </div>
+		      <div class="col-auto">
+		        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><%= I18n.t('text.search') %></button>
+		      </div>
+		    <% end %>
+      </div>
     </div>
   </div>
 </div>

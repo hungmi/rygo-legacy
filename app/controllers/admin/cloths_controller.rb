@@ -4,12 +4,13 @@ class Admin::ClothsController < AdminController
   # GET /cloths
   def index
     authorize [:admin, :cloth], :index?
-    
-    @cloths = if current_user.admin?
-      Cloth.all
-    elsif current_user.supplier?
-      current_user.cloths
-    end.with_attached_images.order(updated_at: :desc)
+    @q = Cloth.ransack(params[:q])
+    @cloths =  if current_user.admin?
+                      @q.result(distinct: true)
+                    elsif current_user.supplier?
+                      @q.result(distinct: true).where(supplier_id: current_user.id)
+                    end.with_attached_images.order(updated_at: :desc)
+    @nav_search_symbol = :code_cont
   end
 
   # GET /cloths/1

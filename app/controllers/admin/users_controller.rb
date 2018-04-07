@@ -3,7 +3,13 @@ class Admin::UsersController < AdminController
 
   def index
     authorize [:admin, :user], :index?
-    @users = User.all
+    @q = User.ransack(params[:q])
+    @users = if current_user.admin?
+               @q.result(distinct: true)
+             elsif current_user.supplier?
+               User.where(id: current_user.id)
+             end.order(updated_at: :desc)
+    @nav_search_symbol = :name_cont
   end
 
 	def show

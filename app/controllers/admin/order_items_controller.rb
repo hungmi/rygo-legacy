@@ -10,6 +10,7 @@ class Admin::OrderItemsController < AdminController
                     elsif current_user.supplier?
                       @q.result(distinct: true).where(cloth_id: current_user.cloth_ids)
                     end.order(updated_at: :desc)
+    @nav_search_symbol = :cloth_code_or_customer_name_or_cloth_supplier_name_cont
   end
 
   # GET /order_items/1

@@ -6,6 +6,7 @@ ja:
     edit: 編集
     new: 登録
     search: 検索
+    search_placeholder: キーワードで検索
     destroy: 削除
     back: 戻る
     hint: ヒント

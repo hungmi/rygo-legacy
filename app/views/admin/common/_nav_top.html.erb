@@ -13,16 +13,25 @@
       </li>
       <% end %>
     </ul>
-    <form class="form-row align-items-center my-2 my-lg-0">
+    <%= search_form_for [:admin, @q], class: "form-row align-items-center my-2 my-lg-0 d-none d-lg-flex" do |f| %>
       <div class="col-auto">
-        <input class="form-control mr-sm-2" type="text" placeholder="<%= I18n.t('text.search') %>" name="s">
+        <div class="input-group">
+          <%= f.search_field @nav_search_symbol, class: "form-control border-right-0", placeholder: I18n.t('text.search_placeholder'), onkeydown: "$(this).parents('.input-group').find('#remove-input-icon').removeClass('invisible')" %>
+          <% if params[:q].present? %>
+            <div class="input-group-append">
+              <span class="input-group-text border-left-0 bg-white">
+                <span id="remove-input-icon" onclick="$(this).parents('.input-group').find('input').val('');$(this).addClass('invisible')" aria-hidden="true">&times;</span>
+              </span>
+            </div>
+          <% end %>
+        </div>
       </div>
       <div class="col-auto">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit"><%= I18n.t('text.search') %></button>
       </div>
-    </form>
+    <% end %>
     <% if user_signed_in? %>
-      <ul class="navbar-nav ml-sm-5 ml-0">
+      <ul class="navbar-nav ml-lg-5 ml-0">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= current_user.name %>
