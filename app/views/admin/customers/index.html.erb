@@ -16,6 +16,6 @@
 		<i class="material-icons">&#xE8B6;</i>
 	<% end %>
 </div>
-<% if mobile? %>
+<% if not_desktop? %>
 	<%= render "admin/common/search_modal" %>
 <% end %>

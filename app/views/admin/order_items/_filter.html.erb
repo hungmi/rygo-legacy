@@ -1,8 +1,9 @@
 <%= search_form_for [:admin, @q] do |f| %>
 	<div class="form-row">
-		<div class="input-group mb-3">
-  		<%= render "admin/common/search_textarea_input_group", f: f %>
+		<div class="input-group">
+  		<%= render "admin/common/short_search_input_group", f: f %>
     </div>
+    <small id="emailHelp" class="form-text text-muted mb-3"><%= @nav_search_placeholder %></small>
 		<% if current_user.admin? %>
 	    <div class="form-group col-12">
 	      <%= f.label :cloth_supplier_id_eq, Cloth.human_attribute_name(:supplier_id) %>

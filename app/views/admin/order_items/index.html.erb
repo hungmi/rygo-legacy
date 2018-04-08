@@ -1,6 +1,6 @@
 <h1 class="h2 d-print-none">
   <%= OrderItem.model_name.human %>履歴
-  <% unless mobile? %>
+  <% unless not_desktop? %>
 	  <%= link_to "#orderItemAdvanceSearch", class: "d-print-none btn btn-outline-secondary float-right d-none d-lg-inline-block", data: { toggle: "collapse" } do %>
 	  	<%= I18n.t("text.filter") %>
 	  <% end %>
@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<div class="col-lg-3 d-print-none">
-		<% unless mobile? %>
+		<% unless not_desktop? %>
 			<div class="collapse <%= 'show' if params[:q].present? %>" id="orderItemAdvanceSearch">
 				<%= render "filter" %>
 			</div>
@@ -46,7 +46,7 @@
   	<% end %>
   <% end %>
 </div>
-<% if mobile? %>
+<% if not_desktop? %>
 	<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">

@@ -13,7 +13,7 @@
       </li>
       <% end %>
     </ul>
-    <% unless mobile? %>
+    <% unless not_desktop? %>
       <%= search_form_for [:admin, @q], class: "form-row align-items-center my-2 my-lg-0 d-none d-lg-flex" do |f| %>
         <div class="col-auto" style="min-width: 460px;">
           <div class="input-group">
