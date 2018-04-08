@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 	get "admin", to: redirect("/admin/cloths")	
 	namespace :admin do
+		resources :users
 		resources :customers
   	resources :order_items do
       member do
@@ -11,7 +12,6 @@ Rails.application.routes.draw do
       end
     end
 		resources :cloths
-  	resources :users
     get 'login', to: 'sessions#new'
     post 'signin', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'

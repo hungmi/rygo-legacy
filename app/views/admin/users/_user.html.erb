@@ -2,11 +2,11 @@
   <div class="list-group list-group-flush">
     <li class="list-group-item flex-column align-items-start">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><%= User.human_attribute_name("role") %></h5>
+        <h5 class="mb-1"><%= User.human_attribute_name("name") %></h5>
       </div>
       <p class="mb-1 better-spacing">
-        <% if user.role.present? %>
-          <%= I18n.t "activerecord.user_role.#{user.role}" %>
+        <% if user.name.present? %>
+          <%= user.name %>
         <% else %>
           <span class="text-muted">未記入</span>
         <% end %>
@@ -15,11 +15,11 @@
 
     <li class="list-group-item flex-column align-items-start">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><%= User.human_attribute_name("name") %></h5>
+        <h5 class="mb-1"><%= User.human_attribute_name("role") %></h5>
       </div>
       <p class="mb-1 better-spacing">
-        <% if user.name.present? %>
-          <%= user.name %>
+        <% if user.role.present? %>
+          <%= I18n.t "activerecord.user_role.#{user.role}" %>
         <% else %>
           <span class="text-muted">未記入</span>
         <% end %>
@@ -48,9 +48,11 @@
     </li>
 
     <li class="list-group-item flex-column align-items-start">
-      <%= link_to "編集する", edit_admin_user_path(user), class: "btn btn-primary" %>
+      <% if policy([:admin, current_user]).update? %>
+      	<%= link_to I18n.t('text.edit') + "する", edit_admin_user_path(user), class: "btn btn-primary" %>
+      <% end %>
       <% if policy([:admin, current_user]).destroy? %>
-        <%= link_to I18n.t('text.destroy'), [:admin, user], method: :delete, data: { confirm: I18n.t("text.confirm_destroy") }, class: "btn btn-danger btn-sm float-right" %>
+        <%= link_to I18n.t('text.destroy'), [:admin, user], method: :delete, data: { confirm: "#{user.name} を#{I18n.t('text.confirm_destroy')}" }, class: "btn btn-danger btn-sm float-right" %>
       <% end %>
     </li>
   </div>
