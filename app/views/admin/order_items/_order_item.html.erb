@@ -70,7 +70,7 @@
       </div>
       <p class="mb-1">
         <% if order_item.cloth.price.present? %>
-          <%= (order_item.cloth.price * (1 - order_item.customer.discount)).to_i %>
+          <%= order_item.discounted_price %>
         <% else %>
           <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
         <% end %>
