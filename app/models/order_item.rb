@@ -15,7 +15,7 @@ class OrderItem < ApplicationRecord
 		"#{deliver_month}月#{period}"
 	end
 
-	def discounted_price
+	def discounted_unit_price
 		if self.cloth.price.to_f >= 0 && self.customer.discount.present?
 			# 割引設定 > 0
 			(self.cloth.price * self.customer.discount).to_i
@@ -23,5 +23,9 @@ class OrderItem < ApplicationRecord
 			# 割引設定為 0 或是 nil
 			self.cloth.price
 		end
+	end
+
+	def total_price
+		discounted_unit_price * amount.to_i
 	end
 end

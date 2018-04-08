@@ -1,0 +1,48 @@
+<div class="d-none d-print-block">
+	<h1 class="text-center">
+		<span style="position: absolute; left: 0; top: 10px; font-size: 1rem;">龍運有限会社<br><%= Date.today.strftime("%F") %></span>
+		ご<%= OrderItem.model_name.human %>履歴
+		<% if searching_customer? %>
+			<span style="position: absolute; right: 0; top: 10px; font-size: 1rem;"><%= Customer.model_name.human %>：1234</span>
+		<% end %>
+	</h1>
+</div>
+
+<table class="table d-print-table d-none">
+	<thead>
+		<tr>
+			<% unless searching_customer? %>
+				<th><%= Customer.model_name.human %></th>
+			<% end %>
+			<th><%= Cloth.model_name.human + Cloth.human_attribute_name("code") %></th>
+			<th><%= Cloth.human_attribute_name("supplier_id") %></th>
+			<th><%= OrderItem.human_attribute_name("amount") %></th>
+			<th><%= OrderItem.human_attribute_name("price") %></th>
+			<th><%= OrderItem.human_attribute_name("deliver_month") %></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @order_items.each do |order_item| %>
+			<tr>
+				<% unless searching_customer? %>
+					<td><%= order_item.customer.name %></td>
+				<% end %>
+				<td><%= order_item.cloth.code %></td>
+				<td><%= order_item.cloth.supplier.name %></td>
+				<td><%= order_item.amount %></td>
+				<td>￥<%= order_item.total_price %></td>
+				<td>
+					<% if order_item.deliver_month.present? %>
+						<%= order_item.deliver_time %>, <%= I18n.t "activerecord.order_item_status.#{order_item.status}" %>
+					<% else %>
+						<span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
+					<% end %>		
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<div class="alwaysbreak"></div>
+
+<h3 class="d-none d-print-block text-center"><%= I18n.t("text.order_detail") %></h3>

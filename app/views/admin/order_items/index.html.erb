@@ -7,16 +7,10 @@
 	<% end %>
 </h1>
 <div class="clearfix"></div>
-<div class="d-none d-print-block">
-	<h1 class="text-center">
-		<span class="h4" style="position: absolute; left: 0; top: 10px;">龍運有限会社 <%= Date.today.strftime("%F") %></span>
-		ご<%= OrderItem.model_name.human %>履歴
-		<% if params[:q].try(:[], :customer_id_eq).present? %>
-			<span class="h4" style="position: absolute; right: 0; top: 10px;"><%= Customer.model_name.human %>：1234</span>
-		<% end %>
-	</h1>
-</div>
-<div class="row" id="orderItemIndex">
+
+<%= render "print_only_content" %>
+
+<div class="row px-1" id="orderItemIndex">
   <div class="col-lg-9">
   	<div class="row">
 			<%= render @order_items %>
@@ -25,7 +19,11 @@
 	<div class="col-lg-3 d-print-none">
 		<% unless not_desktop? %>
 			<div class="collapse <%= 'show' if params[:q].present? %>" id="orderItemAdvanceSearch">
-				<%= render "filter" %>
+				<div class="card">
+					<div class="card-body">
+						<%= render "filter" %>
+					</div>
+				</div>
 			</div>
 		<% end %>
 		<div class="mt-2 <%= 'd-none' unless params[:q].present? %>">

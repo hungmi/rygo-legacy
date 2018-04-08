@@ -18,4 +18,8 @@ def not_desktop?
 	browser = Browser.new(request.user_agent)
 	browser.mobile? || browser.tablet?
 end
+
+def searching_customer?
+	params[:q].try(:[], :customer_id_eq).present?
+end
 end

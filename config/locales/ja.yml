@@ -16,6 +16,7 @@ ja:
     filter: フィルター
     apply: 適用
     clear: クリア
+    order_detail: 注文の詳細
   flash:
     create_success: 登録に成功しました。
     update_success: 更新に成功しました。
@@ -35,6 +36,7 @@ ja:
         price: 小売価格
         images: 写真
       order_item:
+        code: 注文番号
         cloth_id: 衣服品番
         customer_id: お客様
         amount: 数量
