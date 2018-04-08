@@ -57,7 +57,7 @@ ja:
         address: 住所
         phone: 電話番号
         company_name: 社名
-        discount: 割引
+        discount: discount
     order_item_status:
       not_yet_shipped: 未発送
       shipped: 発送しました

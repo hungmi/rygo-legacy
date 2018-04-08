@@ -18,7 +18,7 @@ class OrderItem < ApplicationRecord
 	def discounted_price
 		if self.cloth.price.to_f >= 0 && self.customer.discount.present?
 			# 割引設定 > 0
-			(self.cloth.price * (1 - self.customer.discount)).to_i
+			(self.cloth.price * self.customer.discount).to_i
 		elsif self.customer.discount.to_f == 0.0
 			# 割引設定為 0 或是 nil
 			self.cloth.price

@@ -58,7 +58,7 @@
         <small id="passwordHelpBlock" class="form-text text-muted">請設定介於 0 ~ 1 的小數。</small>
         <small id="passwordHelpBlock" class="form-text text-muted">
           計算方式：<br>
-          假設 <kbd>割引 = 0.75</kbd>，<br class="d-sm-none">則 <kbd>最終售價 = 小売価格 x ( 1 - 0.75 )</kbd>
+          假設 <kbd>discount = 0.75</kbd>，<br class="d-sm-none">則 <kbd>最終售價 = 小売価格 x 0.75</kbd>
         </small>
         <% if customer.errors[:discount].present? %>
           <div class="invalid-feedback">
