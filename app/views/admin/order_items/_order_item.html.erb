@@ -18,7 +18,7 @@
       </div>
       <p class="mb-1 better-spacing">
         <% if order_item.cloth.present? %>
-          <%= order_item.cloth.code %>
+          <%= link_to order_item.cloth.code, admin_cloth_path(order_item.cloth) %>
         <% else %>
           <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
         <% end %>
@@ -31,7 +31,7 @@
       </div>
       <p class="mb-1">
         <% if order_item.customer.present? %>
-          <%= order_item.customer.name_or_code %>
+          <%= link_to order_item.customer.name_or_code, admin_customer_path(order_item.customer) %>
         <% else %>
           <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
         <% end %>
@@ -58,6 +58,19 @@
       <p class="mb-1">
         <% if order_item.amount.present? %>
           <%= order_item.amount %>
+        <% else %>
+          <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
+        <% end %>
+      </p>
+    </li>
+
+    <li class="list-group-item flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= OrderItem.human_attribute_name("price") %></h5>
+      </div>
+      <p class="mb-1">
+        <% if order_item.cloth.price.present? %>
+          <%= (order_item.cloth.price * (1 - order_item.customer.discount)).to_i %>
         <% else %>
           <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
         <% end %>
@@ -98,7 +111,7 @@
       <% elsif order_item.shipped? %>
         <%= link_to I18n.t("activerecord.order_item_status.delivered"), deliver_admin_order_item_path(order_item), class: "btn btn-link deliver-link", method: :post, remote: true, data: { confirm: "#{Cloth.model_name.human} ##{order_item.code} を#{I18n.t('activerecord.order_item_status.delivered')}？" } %>
       <% end %>
-      <%= link_to '削除', [:admin, order_item], method: :delete, data: { confirm: "#{order_item.cloth.code} の注文 ##{order_item.code} を削除しますか？" }, class: "btn btn-danger float-right" %>
+      <%= link_to '削除', [:admin, order_item], method: :delete, data: { confirm: "#{order_item.cloth.code} の注文 ##{order_item.code} を削除しますか？" }, class: "btn btn-danger btn-sm float-right" %>
     </li>
   </div>
 </div>

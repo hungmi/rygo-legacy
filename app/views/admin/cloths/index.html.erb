@@ -16,31 +16,6 @@
 		<i class="material-icons">&#xE8B6;</i>
 	<% end %>
 </div>
-<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      	<%= search_form_for [:admin, @q], class: "form-row align-items-center my-2 my-lg-0" do |f| %>
-		      <div class="col-auto">
-		        <div class="input-group">
-		          <%= f.search_field @nav_search_symbol, class: "form-control border-right-0", placeholder: I18n.t('text.search_placeholder'), onkeydown: "$(this).parents('.input-group').find('#remove-input-icon').removeClass('invisible')" %>
-		          <div class="input-group-append">
-		            <span class="input-group-text border-left-0 bg-white">
-		              <span id="remove-input-icon" class="<%= 'invisible' unless params[:q].present? %>" onclick="$(this).parents('.input-group').find('input').val('');$(this).addClass('invisible')" aria-hidden="true" style="cursor: pointer;">&times;</span>
-		            </span>
-		          </div>
-		        </div>
-		      </div>
-		      <div class="col-auto">
-		        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><%= I18n.t('text.search') %></button>
-		      </div>
-		    <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<% if mobile? %>
+	<%= render "admin/common/search_modal" %>
+<% end %>

@@ -13,4 +13,9 @@ def notice_message(opts = {})
     end[0]
   end
 end
+
+def mobile?
+	browser = Browser.new(request.user_agent)
+	browser.mobile? #=> false
+end
 end

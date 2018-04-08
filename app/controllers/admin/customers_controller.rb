@@ -63,6 +63,11 @@ class Admin::CustomersController < AdminController
     def set_search
       @q = Customer.ransack(params[:q])
       @nav_search_symbol = :name_or_address_or_phone_or_company_name_or_code_cont
+      @nav_search_placeholder = Customer.human_attribute_name("name") + "、" + 
+                                Customer.human_attribute_name("code") + "、" +
+                                Customer.human_attribute_name("phone") + "、" +
+                                Customer.human_attribute_name("company_name") + "、" +
+                                Customer.human_attribute_name("address") + "で検索"
     end
 
     # Only allow a trusted parameter "white list" through.

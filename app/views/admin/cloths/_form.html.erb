@@ -1,7 +1,7 @@
 <%= form_with model: [:admin, cloth], local: true, class: "mb-5" do |f| %>
   <div class="row">
     <% if cloth.images.attached? %>
-      <div class="col-sm-6">
+      <div class="col-md-6">
         <div class="row">
           <% cloth.images.each do |image| %>
             <%= render "admin/cloths/cloth_img_card", image: image %>
@@ -9,7 +9,7 @@
         </div>
       </div>
     <% end %>
-    <div class="col-sm-6 <%= 'offset-sm-6' unless cloth.images.attached? %>">
+    <div class="col-md-6 <%= 'offset-md-6' unless cloth.images.attached? %>">
       <div class="form-group <%= cloth.errors[:images].present? ? 'has-danger' : '' %>">
         <%= f.label :images %>
         <%= f.file_field :images, class: "form-control previewable #{cloth.errors[:images].present? ? 'is-invalid' : ''}", multiple: true %>

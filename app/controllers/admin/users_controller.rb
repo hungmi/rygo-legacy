@@ -64,6 +64,7 @@ class Admin::UsersController < AdminController
     def set_search
       @q = User.ransack(params[:q])
       @nav_search_symbol = :name_cont
+      @nav_search_placeholder = User.human_attribute_name("name") + "で検索"
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -1,8 +1,10 @@
 <h1 class="h2 d-print-none">
   <%= OrderItem.model_name.human %>履歴
-  <%= link_to "#orderItemAdvanceSearch", class: "d-print-none btn btn-outline-secondary float-right d-none d-lg-inline-block", data: { toggle: "collapse" } do %>
-  	<%= I18n.t("text.filter") %>
-  <% end %>
+  <% unless mobile? %>
+	  <%= link_to "#orderItemAdvanceSearch", class: "d-print-none btn btn-outline-secondary float-right d-none d-lg-inline-block", data: { toggle: "collapse" } do %>
+	  	<%= I18n.t("text.filter") %>
+	  <% end %>
+	<% end %>
 </h1>
 <div class="clearfix"></div>
 <div class="d-none d-print-block">
@@ -21,9 +23,11 @@
 		</div>
 	</div>
 	<div class="col-lg-3 d-print-none">
-		<div class="collapse <%= 'show' if params[:q].present? %>" id="orderItemAdvanceSearch">
-			<%= render "filter" %>
-		</div>
+		<% unless mobile? %>
+			<div class="collapse <%= 'show' if params[:q].present? %>" id="orderItemAdvanceSearch">
+				<%= render "filter" %>
+			</div>
+		<% end %>
 		<div class="mt-2 <%= 'd-none' unless params[:q].present? %>">
 			<%= I18n.t("text.search_result") %>：<%= @order_items.size %>
 		</div>
@@ -42,18 +46,20 @@
   	<% end %>
   <% end %>
 </div>
-<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-      	<h5 class="modal-title" id="exampleModalLabel"><%= I18n.t("text.filter") %></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-				<%= render "filter" %>
-      </div>
-    </div>
-  </div>
-</div>
+<% if mobile? %>
+	<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      	<h5 class="modal-title" id="searchModalLabel"><%= I18n.t("text.filter") %></h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+					<%= render "filter" %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<% end %>

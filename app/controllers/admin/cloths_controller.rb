@@ -71,6 +71,9 @@ class Admin::ClothsController < AdminController
     def set_search
       @q = Cloth.ransack(params[:q])
       @nav_search_symbol = :code_cont
+      @nav_search_placeholder = Cloth.human_attribute_name("code") + "、" + 
+                                Cloth.human_attribute_name("jancode") + "、" +
+                                Cloth.human_attribute_name("price") + "で検索"
     end
 
     # Only allow a trusted parameter "white list" through.

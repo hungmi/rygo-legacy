@@ -79,7 +79,11 @@ class Admin::OrderItemsController < AdminController
     
     def set_search
       @q = OrderItem.ransack(params[:q])
-      @nav_search_symbol = :cloth_code_or_customer_name_or_cloth_supplier_name_cont
+      @nav_search_symbol = :cloth_code_or_customer_name_or_customer_code_or_cloth_supplier_name_cont
+      @nav_search_placeholder = Cloth.model_name.human + Cloth.human_attribute_name("code") + "、" + 
+                                Customer.model_name.human + Customer.human_attribute_name("name") + "、" +
+                                Customer.human_attribute_name("code") + "、" +
+                                Cloth.human_attribute_name("supplier_id") + "で検索"
     end
 
     # Only allow a trusted parameter "white list" through.

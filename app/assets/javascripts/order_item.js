@@ -22,8 +22,8 @@ $(document).on("change", "#order_item_deliver_month", function() {
 $(document).on("change", "#q_deliver_month_eq", function() {
 	console.log(this.value.length)
 	if (this.value.length === 0) {
-		document.querySelector("#q_deliver_period_eq").classList.add("d-none")
+		$("[name='q[deliver_period_eq]']").addClass("d-none")
 	} else {
-		document.querySelector("#q_deliver_period_eq").classList.remove("d-none")
+		$("[name='q[deliver_period_eq]']").removeClass("d-none")
 	}
 })

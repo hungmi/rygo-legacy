@@ -38,6 +38,7 @@ ja:
         cloth_id: 衣服品番
         customer_id: お客様
         amount: 数量
+        price: 価格
         deliver_month: 発送日
         deliver_period: 発送日
         status: 配送状況

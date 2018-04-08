@@ -12,4 +12,10 @@
 	<%= link_to new_admin_customer_path, class: "btn btn-success" do %>
 		<i class="material-icons">&#xE145;</i>
 	<% end %>
+	<%= link_to "#", class: "btn btn-secondary d-lg-none", data: { toggle: "modal", target: "#searchModal" } do %>
+		<i class="material-icons">&#xE8B6;</i>
+	<% end %>
 </div>
+<% if mobile? %>
+	<%= render "admin/common/search_modal" %>
+<% end %>
