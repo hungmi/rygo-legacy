@@ -1,10 +1,11 @@
 class Admin::CustomersController < AdminController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_search
 
   # GET /customers
   def index
-    @customers = Customer.all.order(updated_at: :desc)
     authorize [:admin, :customer], :index?
+    @customers = @q.result(distinct: true).order(updated_at: :desc) if current_user.admin?
   end
 
   # GET /customers/1
@@ -57,6 +58,11 @@ class Admin::CustomersController < AdminController
     def set_customer
       @customer = Customer.find(params[:id])
     	authorize [:admin, @customer]
+    end
+
+    def set_search
+      @q = Customer.ransack(params[:q])
+      @nav_search_symbol = :name_or_address_or_phone_or_company_name_or_code_cont
     end
 
     # Only allow a trusted parameter "white list" through.

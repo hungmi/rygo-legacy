@@ -1,6 +1,5 @@
 <h1 class="h2">
   <%= User.model_name.human %><%= I18n.t("text.index") %>
-  <%= link_to I18n.t("text.new"), new_admin_user_path, class: "btn btn-success float-right" %>
 </h1>
 <table class="table">
   <thead>
@@ -26,7 +25,9 @@
               <%= link_to I18n.t("text.show"), [:admin, user], class: "dropdown-item" %>
               <%= link_to I18n.t("text.edit") + "する", edit_admin_user_path(user), class: "dropdown-item" %>
               <div class="dropdown-divider"></div>
-              <%= link_to I18n.t("text.destroy"), [:admin, user], method: :delete, data: { confirm: "#{user.name} を削除しますか？" }, class: "dropdown-item" %>
+              <% if policy([:admin, current_user]).destroy? %>
+                <%= link_to I18n.t("text.destroy"), [:admin, user], method: :delete, data: { confirm: "#{user.name} を削除しますか？" }, class: "dropdown-item" %>
+              <% end %>
             </div>
           </div>
         </td>
@@ -34,6 +35,11 @@
     <% end %>
   </tbody>
 </table>
+<div class="btn-abs-wrapper">
+  <%= link_to new_admin_user_path, class: "btn btn-success" do %>
+    <i class="material-icons">&#xE145;</i>
+  <% end %>
+</div>
 
 <script type="text/javascript">
   $(function() {

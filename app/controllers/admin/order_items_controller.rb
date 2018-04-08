@@ -1,16 +1,15 @@
 class Admin::OrderItemsController < AdminController
   before_action :set_order_item, only: [:show, :edit, :update, :destroy, :ship, :deliver]
+  before_action :set_search
 
   # GET /order_items
   def index
     authorize [:admin, :order_item], :index?
-    @q = OrderItem.ransack(params[:q])
     @order_items =  if current_user.admin?
                       @q.result(distinct: true)
                     elsif current_user.supplier?
                       @q.result(distinct: true).where(cloth_id: current_user.cloth_ids)
                     end.order(updated_at: :desc)
-    @nav_search_symbol = :cloth_code_or_customer_name_or_cloth_supplier_name_cont
   end
 
   # GET /order_items/1
@@ -76,6 +75,11 @@ class Admin::OrderItemsController < AdminController
     def set_order_item
       @order_item = OrderItem.find(params[:id])
     	authorize [:admin, @order_item]
+    end
+    
+    def set_search
+      @q = OrderItem.ransack(params[:q])
+      @nav_search_symbol = :cloth_code_or_customer_name_or_cloth_supplier_name_cont
     end
 
     # Only allow a trusted parameter "white list" through.

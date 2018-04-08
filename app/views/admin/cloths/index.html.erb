@@ -29,13 +29,11 @@
 		      <div class="col-auto">
 		        <div class="input-group">
 		          <%= f.search_field @nav_search_symbol, class: "form-control border-right-0", placeholder: I18n.t('text.search_placeholder'), onkeydown: "$(this).parents('.input-group').find('#remove-input-icon').removeClass('invisible')" %>
-		          <% if params[:q].present? %>
-		            <div class="input-group-append">
-		              <span class="input-group-text border-left-0 bg-white">
-		                <span id="remove-input-icon" onclick="$(this).parents('.input-group').find('input').val('');$(this).addClass('invisible')" aria-hidden="true">&times;</span>
-		              </span>
-		            </div>
-		          <% end %>
+		          <div class="input-group-append">
+		            <span class="input-group-text border-left-0 bg-white">
+		              <span id="remove-input-icon" class="<%= 'invisible' unless params[:q].present? %>" onclick="$(this).parents('.input-group').find('input').val('');$(this).addClass('invisible')" aria-hidden="true" style="cursor: pointer;">&times;</span>
+		            </span>
+		          </div>
 		        </div>
 		      </div>
 		      <div class="col-auto">

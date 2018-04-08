@@ -1,58 +1,57 @@
-<div class="row" id="user-<%= user.id %>">
-  <div class="col-sm-12">
-    <div class="list-group list-group-flush">
-      <li class="list-group-item flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1"><%= User.human_attribute_name("role") %></h5>
-        </div>
-        <p class="mb-1 better-spacing">
-          <% if user.role.present? %>
-            <%= I18n.t "activerecord.user_role.#{user.role}" %>
-          <% else %>
-            <span class="text-muted">未記入</span>
-          <% end %>
-        </p>
-      </li>
+<div class="col-sm-6 mb-5 pr-5" id="user-<%= user.id %>">
+  <div class="list-group list-group-flush">
+    <li class="list-group-item flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= User.human_attribute_name("role") %></h5>
+      </div>
+      <p class="mb-1 better-spacing">
+        <% if user.role.present? %>
+          <%= I18n.t "activerecord.user_role.#{user.role}" %>
+        <% else %>
+          <span class="text-muted">未記入</span>
+        <% end %>
+      </p>
+    </li>
 
-      <li class="list-group-item flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1"><%= User.human_attribute_name("name") %></h5>
-        </div>
-        <p class="mb-1 better-spacing">
-          <% if user.name.present? %>
-            <%= user.name %>
-          <% else %>
-            <span class="text-muted">未記入</span>
-          <% end %>
-        </p>
-      </li>
-      
-      <li class="list-group-item flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1"><%= User.human_attribute_name("password_digest") %></h5>
-        </div>
-        <p class="mb-1">**********</p>
-      </li>
+    <li class="list-group-item flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= User.human_attribute_name("name") %></h5>
+      </div>
+      <p class="mb-1 better-spacing">
+        <% if user.name.present? %>
+          <%= user.name %>
+        <% else %>
+          <span class="text-muted">未記入</span>
+        <% end %>
+      </p>
+    </li>
+    
+    <li class="list-group-item flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= User.human_attribute_name("password_digest") %></h5>
+      </div>
+      <p class="mb-1">**********</p>
+    </li>
 
-      <li class="list-group-item flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">作成時刻</h5>
-        </div>
-        <p class="mb-1"><%= user.created_at.strftime("%F %T") %></p>
-      </li>
+    <li class="list-group-item flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">作成時刻</h5>
+      </div>
+      <p class="mb-1"><%= user.created_at.strftime("%F %T") %></p>
+    </li>
 
-      <li class="list-group-item flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">更新時刻</h5>
-        </div>
-        <p class="mb-1"><%= timeago(user.updated_at) %></p>
-      </li>
+    <li class="list-group-item flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">更新時刻</h5>
+      </div>
+      <p class="mb-1"><%= timeago(user.updated_at) %></p>
+    </li>
 
-      <li class="list-group-item flex-column align-items-start d-none d-sm-block">
-        <%= link_to "編集する", edit_admin_user_path(user), class: "btn btn-primary" %>
-        <%#= link_to '削除', [:admin, cloth], method: :delete, data: { confirm: "#{cloth.code}を削除しますか？" }, class: "btn btn-danger float-right" %>
-      </li>
-    </div>
+    <li class="list-group-item flex-column align-items-start">
+      <%= link_to "編集する", edit_admin_user_path(user), class: "btn btn-primary" %>
+      <% if policy([:admin, current_user]).destroy? %>
+        <%= link_to I18n.t('text.destroy'), [:admin, user], method: :delete, data: { confirm: I18n.t("text.confirm_destroy") }, class: "btn btn-danger float-right" %>
+      <% end %>
+    </li>
   </div>
 </div>
-<hr class="my-5">

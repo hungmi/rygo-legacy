@@ -1,85 +1,76 @@
 <%= form_with model: [:admin, cloth], local: true, class: "mb-5" do |f| %>
-  <% if cloth.images.attached? %>
-    <div class="row mb-4">
-      <% cloth.images.each do |image| %>
-        <div class="card col-sm-2 col-4">
-          <img class="card-img-top" src="<%= url_for(image) %>" alt="Card image cap">
-          <div class="card-body py-2 text-center">
-            <div class="form-check">
-              <label class="form-check-label">
-                <%= check_box_tag "cloth[remove_images][#{image.id}]", "true", false, { class: "form-check-input mr-0" } %>
-                <!-- <input class="form-check-input" type="checkbox" value="" checked=""> -->
-                <%= I18n.t('text.destroy') %>
-              </label>
-            </div>
-          </div>
+  <div class="row">
+    <% if cloth.images.attached? %>
+      <div class="col-sm-6">
+        <div class="row">
+          <% cloth.images.each do |image| %>
+            <%= render "admin/cloths/cloth_img_card", image: image %>
+          <% end %>
         </div>
-      <% end %>
-    </div>
-  <% end %>
-  <div class="offset-sm-3 col-sm-6">
-    <div class="form-group <%= cloth.errors[:images].present? ? 'has-danger' : '' %>">
-      <%= f.label :images %>
-      <%= f.file_field :images, class: "form-control previewable #{cloth.errors[:images].present? ? 'is-invalid' : ''}", multiple: true %>
-      <% if cloth.errors[:images].present? %>
-        <div class="invalid-feedback">
-          <%= cloth.errors[:images].join(", ") %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <div id="newImagePreview" class="row mb-4"></div>
-  <div class="offset-sm-3 col-sm-6">
-    <div class="form-group <%= cloth.errors[:code].present? ? 'has-danger' : '' %>">
-      <%= f.label :code %>
-      <%= f.text_field :code, class: "form-control #{cloth.errors[:code].present? ? 'is-invalid' : ''}", required: true %>
-      <% if cloth.errors[:code].present? %>
-  	    <div class="invalid-feedback">
-  	      <%= cloth.errors[:code].join(", ") %>
-  	    </div>
-      <% end %>
-    </div>
-    <div class="form-group <%= cloth.errors[:jancode].present? ? 'has-danger' : '' %>">
-      <%= f.label :jancode %>
-      <%= f.text_field :jancode, class: "form-control #{cloth.errors[:jancode].present? ? 'is-invalid' : ''}" %>
-      <% if cloth.errors[:jancode].present? %>
-  	    <div class="invalid-feedback">
-  	      <%= cloth.errors[:jancode].join(", ") %>
-  	    </div>
-      <% end %>
-    </div>
-    <div class="form-group <%= cloth.errors[:brand].present? ? 'has-danger' : '' %>">
-      <%= f.label :brand %>
-      <%= f.text_field :brand, class: "form-control #{cloth.errors[:brand].present? ? 'is-invalid' : ''}" %>
-      <% if cloth.errors[:brand].present? %>
-  	    <div class="invalid-feedback">
-  	      <%= cloth.errors[:brand].join(", ") %>
-  	    </div>
-      <% end %>
-    </div>
-    <% if current_user.admin? %>
-      <div class="form-group <%= cloth.errors[:supplier].present? ? 'has-danger' : '' %>">
-        <%= f.label :supplier_id %>
-        <%= f.select :supplier_id, User.supplier.all.pluck(:name, :id), { prompt: true }, class: "form-control #{cloth.errors[:supplier].present? ? 'is-invalid' : ''}", required: true %>
-        <% if cloth.errors[:supplier].present? %>
+      </div>
+    <% end %>
+    <div class="col-sm-6 <%= 'offset-sm-6' unless cloth.images.attached? %>">
+      <div class="form-group <%= cloth.errors[:images].present? ? 'has-danger' : '' %>">
+        <%= f.label :images %>
+        <%= f.file_field :images, class: "form-control previewable #{cloth.errors[:images].present? ? 'is-invalid' : ''}", multiple: true %>
+        <% if cloth.errors[:images].present? %>
           <div class="invalid-feedback">
-            <%= cloth.errors[:supplier].join(", ") %>
+            <%= cloth.errors[:images].join(", ") %>
           </div>
         <% end %>
       </div>
-    <% elsif current_user.supplier? %>
-      <%= f.hidden_field :supplier_id, value: current_user.id %>
-    <% end %>
-    <div class="form-group <%= cloth.errors[:price].present? ? 'has-danger' : '' %>">
-      <%= f.label :price %>
-      <%= f.text_field :price, class: "form-control #{cloth.errors[:price].present? ? 'is-invalid' : ''}" %>
-      <% if cloth.errors[:price].present? %>
-  	    <div class="invalid-feedback">
-  	      <%= cloth.errors[:price].join(", ") %>
-  	    </div>
+      <div id="newImagePreview" class="row mb-4"></div>
+      <div class="form-group <%= cloth.errors[:code].present? ? 'has-danger' : '' %>">
+        <%= f.label :code %>
+        <%= f.text_field :code, class: "form-control #{cloth.errors[:code].present? ? 'is-invalid' : ''}", required: true %>
+        <% if cloth.errors[:code].present? %>
+    	    <div class="invalid-feedback">
+    	      <%= cloth.errors[:code].join(", ") %>
+    	    </div>
+        <% end %>
+      </div>
+      <div class="form-group <%= cloth.errors[:jancode].present? ? 'has-danger' : '' %>">
+        <%= f.label :jancode %>
+        <%= f.text_field :jancode, class: "form-control #{cloth.errors[:jancode].present? ? 'is-invalid' : ''}" %>
+        <% if cloth.errors[:jancode].present? %>
+    	    <div class="invalid-feedback">
+    	      <%= cloth.errors[:jancode].join(", ") %>
+    	    </div>
+        <% end %>
+      </div>
+      <div class="form-group <%= cloth.errors[:brand].present? ? 'has-danger' : '' %>">
+        <%= f.label :brand %>
+        <%= f.text_field :brand, class: "form-control #{cloth.errors[:brand].present? ? 'is-invalid' : ''}" %>
+        <% if cloth.errors[:brand].present? %>
+    	    <div class="invalid-feedback">
+    	      <%= cloth.errors[:brand].join(", ") %>
+    	    </div>
+        <% end %>
+      </div>
+      <% if current_user.admin? %>
+        <div class="form-group <%= cloth.errors[:supplier].present? ? 'has-danger' : '' %>">
+          <%= f.label :supplier_id %>
+          <%= f.select :supplier_id, User.supplier.all.pluck(:name, :id), { prompt: true }, class: "form-control #{cloth.errors[:supplier].present? ? 'is-invalid' : ''}", required: true %>
+          <% if cloth.errors[:supplier].present? %>
+            <div class="invalid-feedback">
+              <%= cloth.errors[:supplier].join(", ") %>
+            </div>
+          <% end %>
+        </div>
+      <% elsif current_user.supplier? %>
+        <%= f.hidden_field :supplier_id, value: current_user.id %>
       <% end %>
+      <div class="form-group <%= cloth.errors[:price].present? ? 'has-danger' : '' %>">
+        <%= f.label :price %>
+        <%= f.text_field :price, class: "form-control #{cloth.errors[:price].present? ? 'is-invalid' : ''}" %>
+        <% if cloth.errors[:price].present? %>
+    	    <div class="invalid-feedback">
+    	      <%= cloth.errors[:price].join(", ") %>
+    	    </div>
+        <% end %>
+      </div>
+      <%= link_to I18n.t("text.cancel"), admin_cloths_path, class: "btn btn-link text-danger" %>
+      <%= f.submit class: "btn btn-primary float-right" %>
     </div>
-    <%= link_to I18n.t("text.cancel"), admin_cloths_path, class: "btn btn-link text-danger" %>
-    <%= f.submit class: "btn btn-primary float-right" %>
   </div>
 <% end %>

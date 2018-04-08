@@ -16,8 +16,8 @@ class Admin::UserPolicy < AdminPolicy
   end
 
   def update?
-    user.present? && (user == record || user.admin?)
     # 只有自己或 admin 可以修改
+    user.present? && (user == record || user.admin?)
   end
 
   def edit?
@@ -25,6 +25,6 @@ class Admin::UserPolicy < AdminPolicy
   end
 
   def destroy?
-    update?
+    user.present? && user.admin?
   end
 end
