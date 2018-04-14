@@ -13,10 +13,18 @@ body.admin {
 	  flex-direction: column;
 		.btn {
 			@extend .rounded-circle;
-			height: 55px;
-			width: 55px;
+	  	height: 55px;
+	  	width: 55px;
 			margin: 15px;
-			padding: 0.9rem 0.9rem;
+			padding: 0.9rem;
+	  	@media (max-width: 767px) {
+	  		height: 40px;
+		  	width: 40px;
+		  	padding: 9px;
+		  	.material-icons {
+		  		font-size: 20px;
+		  	}
+	  	}
 		}
 	}
 }
