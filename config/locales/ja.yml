@@ -35,6 +35,8 @@ ja:
         supplier_id: メーカー
         price: 小売価格
         images: 写真
+        size: サイズ
+        color: カラー
       order_item:
         code: 注文番号
         cloth_id: 衣服品番

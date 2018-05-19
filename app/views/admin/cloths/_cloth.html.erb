@@ -3,75 +3,91 @@
 </div>
 <div class="col-sm-6 mb-5 pr-lg-5" id="cloth-<%= cloth.id %>">
   <div class="list-group list-group-flush">
-    <li class="list-group-item flex-column align-items-start">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><%= Cloth.human_attribute_name("code") %></h5>
-      </div>
-      <p class="mb-1">
-        <% if cloth.code.present? %>
+    <% if cloth.code.present? %>
+      <li class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= Cloth.human_attribute_name("code") %></h5>
+        </div>
+        <p class="mb-1">
           <span class="better-spacing"><%= cloth.code %></span>
-        <% else %>
-          <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
-          <span class="badge badge-pill badge-warning"><%= I18n.t("text.hint") %></span>
-        <% end %>
-      </p>
-    </li>
+        </p>
+      </li>
+    <% end %>
 
-    <li class="list-group-item flex-column align-items-start">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><%= Cloth.human_attribute_name("jancode") %></h5>
-      </div>
-      <p class="mb-1">
-        <% if cloth.jancode.present? %>
-          <span class="better-spacing"><%= cloth.jancode %></span>
-        <% else %>
-          <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
-          <span class="badge badge-pill badge-warning"><%= I18n.t("text.hint") %></span>
-        <% end %>
-      </p>
-    </li>
+    <% if cloth.jancode.present? %>
+      <li class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= Cloth.human_attribute_name("jancode") %></h5>
+        </div>
+        <p class="mb-1">
+          <span class="better-spacing"><%= cloth.jancode %></span>      
+        </p>
+      </li>
+    <% end %>
     
-    <li class="list-group-item flex-column align-items-start">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><%= Cloth.human_attribute_name("brand") %></h5>
-      </div>
-      <p class="mb-1">
-        <% if cloth.brand.present? %>
+    <% if cloth.brand.present? %>
+      <li class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= Cloth.human_attribute_name("brand") %></h5>
+        </div>
+        <p class="mb-1">
           <%= cloth.brand %>
-        <% else %>
-          <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
-          <span class="badge badge-pill badge-warning"><%= I18n.t("text.hint") %></span>
-        <% end %>
+        </p>
+      </li>
+    <% end %>
+
+    <li class="list-group-item flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= Cloth.human_attribute_name("size") %></h5>
+      </div>
+      <p class="mb-1">
+        <span class="mr-2">S</span>
+        <span class="mr-2">L</span>
+        <span class="mr-2">XL</span>
       </p>
     </li>
 
     <li class="list-group-item flex-column align-items-start">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><%= Cloth.human_attribute_name("supplier_id") %></h5>
+        <h5 class="mb-1"><%= Cloth.human_attribute_name("color") %></h5>
       </div>
-      <p class="mb-1">
-        <% if cloth.supplier.present? %>
-          <%= cloth.supplier.name %>
-        <% else %>
-          <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
-          <span class="badge badge-pill badge-warning"><%= I18n.t("text.hint") %></span>
-        <% end %>
-      </p>
+      <div class="mb-1">
+        <div class="color-wrapper">
+          <%= image_tag "11red.png", style: "max-height: 100px;" %>
+          <span>Red</span>
+        </div>
+        <div class="color-wrapper">
+          <%= image_tag "11green.png", style: "max-height: 100px;" %>
+          <span>Green</span>
+        </div>
+        <div class="color-wrapper">
+          <%= image_tag "11blue.png", style: "max-height: 100px;" %>
+          <span>Blue</span>
+        </div>
+      </div>
     </li>
     
-    <li class="list-group-item flex-column align-items-start">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><%= Cloth.human_attribute_name("price") %></h5>
-      </div>
-      <p class="mb-1">
-        <% if cloth.price.present? %>
+    <% if cloth.supplier.present? %>
+      <li class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= Cloth.human_attribute_name("supplier_id") %></h5>
+        </div>
+        <p class="mb-1">
+          <%= cloth.supplier.name %>
+        </p>
+      </li>
+    <% end %>
+
+    <% if cloth.price.present? %>
+      <li class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= Cloth.human_attribute_name("price") %></h5>
+        </div>
+        <p class="mb-1">
           <%= cloth.price %>
-        <% else %>
-          <span class="text-muted"><%= I18n.t("text.attr_no_value") %></span>
-          <span class="badge badge-pill badge-warning"><%= I18n.t("text.hint") %></span>
-        <% end %>
-      </p>
-    </li>
+        </p>
+      </li>
+    <% end %>
 
     <li class="list-group-item flex-column align-items-start">
       <div class="d-flex w-100 justify-content-between">
