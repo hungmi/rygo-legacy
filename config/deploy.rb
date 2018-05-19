@@ -6,6 +6,7 @@ set :repo_url, "git@github.com:hungmi/rygo.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, proc { `git rev-parse --abbrev-ref quick_demo`.chomp }
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/deploy/apps/rygo'
